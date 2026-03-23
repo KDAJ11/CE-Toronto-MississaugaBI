@@ -8,611 +8,1125 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+ 
 :root {
-  /* ── PALETTE: OCEAN ── */
-  --ice: #F0FAFB;
-  --frost: #D5F0F5;
-  --sky: #67E8F9;
-  --cyan: #22D3EE;
-  --teal: #0891B2;
-  --ocean: #0E7490;
-  --deep: #155E75;
-  --navy: #0C2D48;
-  --midnight: #071A2E;
-  --white: #FFFFFF;
- 
-  /* ── FONTS ── */
-  --font-display: 'Montserrat', sans-serif;
-  --font-serif: 'Crimson Pro', serif;
+  --ice:#F0FAFB;
+  --frost:#D5F0F5;
+  --sky:#67E8F9;
+  --cyan:#22D3EE;
+  --teal:#0891B2;
+  --ocean:#0E7490;
+  --deep:#155E75;
+  --navy:#0C2D48;
+  --midnight:#071A2E;
+  --white:#FFFFFF;
+  --font-display:'Montserrat',sans-serif;
+  --font-serif:'Crimson Pro',serif;
+  --ease:cubic-bezier(0.16,1,0.3,1)
 }
  
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box
+}
+ 
+html {
+  scroll-behavior:smooth
+}
+ 
 body {
-  background: var(--white);
-  color: var(--navy);
-  font-family: var(--font-display);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  background:var(--white);
+  color:var(--navy);
+  font-family:var(--font-display);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden
 }
  
-/* ── LAYOUT ── */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
-.section { padding: 80px 0; }
-.section + .section { border-top: 1px solid #E2EFF2; }
+.reveal {
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease)
+}
+.reveal.v {
+  opacity:1;
+  transform:translateY(0)
+}
  
-/* ── NAV ── */
+.reveal-s {
+  opacity:0;
+  transform:scale(.92);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)
+}
+.reveal-s.v {
+  opacity:1;
+  transform:scale(1)
+}
+ 
+.stagger>.si {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)
+}
+ 
+.stagger.v>.si {
+  opacity:1;
+  transform:translateY(0)
+}
+ 
+.stagger.v>.si:nth-child(1) {
+  transition-delay:0s
+}
+.stagger.v>.si:nth-child(2) {
+  transition-delay:.07s
+}
+.stagger.v>.si:nth-child(3) {
+  transition-delay:.14s
+}
+.stagger.v>.si:nth-child(4) {
+  transition-delay:.21s
+}
+.stagger.v>.si:nth-child(5) {
+  transition-delay:.28s
+}
+.stagger.v>.si:nth-child(6) {
+  transition-delay:.35s
+}
+.stagger.v>.si:nth-child(7) {
+  transition-delay:.42s
+}
+.stagger.v>.si:nth-child(8) {
+  transition-delay:.49s
+}
+.stagger.v>.si:nth-child(9) {
+  transition-delay:.56s
+}
+.stagger.v>.si:nth-child(10) {
+  transition-delay:.63s
+}
+.stagger.v>.si:nth-child(11) {
+  transition-delay:.7s
+}
+.stagger.v>.si:nth-child(12) {
+  transition-delay:.77s
+}
+ 
+.container {
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 28px
+}
+.section {
+  padding:100px 0;
+  position:relative
+}
+.section+.section {
+  border-top:1px solid rgba(8,145,178,.06)
+}
+ 
+.glass {
+  background:rgba(240,250,251,.7);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  border:1px solid rgba(8,145,178,.08);
+  border-radius:16px;
+  transition:all .4s var(--ease)
+}
+.glass:hover {
+  border-color:rgba(8,145,178,.16);
+  box-shadow:0 8px 40px rgba(8,145,178,.08),0 0 0 1px rgba(34,211,238,.06);
+  transform:translateY(-4px)
+}
+ 
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(8,145,178,0.1);
-  padding: 14px 0;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid rgba(8,145,178,.06);
+  padding:14px 0;
+  transition:all .4s var(--ease)
 }
+.nav.scrolled {
+  background:rgba(255,255,255,.9);
+  box-shadow:0 4px 30px rgba(12,45,72,.06)
+}
+ 
 .nav-inner {
-  max-width: 1100px; margin: 0 auto; padding: 0 28px;
-  display: flex; justify-content: space-between; align-items: center;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
 }
+ 
 .nav-brand {
-  font-weight: 800; font-size: 13px;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--navy);
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--navy)
 }
-.nav-links { display: flex; gap: 24px; list-style: none; }
+ 
+.nav-links {
+  display:flex;
+  gap:24px;
+  list-style:none
+}
 .nav-links a {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--teal); text-decoration: none;
-  transition: color 0.2s;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--ocean);
+  text-decoration:none;
+  position:relative;
+  transition:color .3s
 }
-.nav-links a:hover { color: var(--navy); }
+.nav-links a::after {
+  content:'';
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  right:0;
+  height:2px;
+  background:var(--cyan);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .3s var(--ease)
+}
+.nav-links a:hover {
+  color:var(--navy)
+}
+.nav-links a:hover::after {
+  transform:scaleX(1);
+  transform-origin:left
+}
  
-/* ── HERO ── */
 .hero {
-  min-height: 70vh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  background: var(--navy);
-  position: relative; overflow: hidden;
-  padding: 100px 28px 80px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:var(--midnight);
+  position:relative;
+  overflow:hidden;
+  padding:100px 28px 80px
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(34,211,238,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 80% 30%, rgba(8,145,178,0.08) 0%, transparent 50%);
+ 
+.hero-bg {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(8,145,178,.15) 0%,transparent 60%),radial-gradient(ellipse 40% 70% at 80% 20%,rgba(34,211,238,.1) 0%,transparent 50%),radial-gradient(ellipse 50% 40% at 15% 80%,rgba(8,145,178,.08) 0%,transparent 50%);
+  animation:heroPulse 8s ease-in-out infinite alternate
 }
-.hero-content { position: relative; z-index: 2; }
+ 
+@keyframes heroPulse {
+  0% {
+  opacity:.7;
+  transform:scale(1)
+}
+100% {
+  opacity:1;
+  transform:scale(1.05)
+}
+ 
+}
+ 
+.hero-particles {
+  position:absolute;
+  inset:0;
+  overflow:hidden
+}
+.hero-particle {
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:var(--cyan);
+  border-radius:50%;
+  opacity:0;
+  animation:float linear infinite
+}
+ 
+@keyframes float {
+  0% {
+  opacity:0;
+  transform:translateY(100vh) scale(0)
+}
+10% {
+  opacity:.6
+}
+90% {
+  opacity:.6
+}
+100% {
+  opacity:0;
+  transform:translateY(-10vh) scale(1)
+}
+ 
+}
+ 
+.hero-content {
+  position:relative;
+  z-index:2
+}
+ 
 .hero-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:32px;
+  opacity:0;
+  animation:hR .8s .3s var(--ease) forwards
 }
+ 
 .hero-title {
-  font-size: clamp(44px, 9vw, 100px);
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 0.92;
-  color: var(--white);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
+  font-size:clamp(38px,9vw,100px);
+  font-weight:900;
+  letter-spacing:-1px;
+  line-height:.92;
+  color:var(--white);
+  text-transform:uppercase;
+  margin-bottom:20px;
+  opacity:0;
+  animation:hR .8s .5s var(--ease) forwards
 }
+ 
 .hero-title em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--sky);
-  text-transform: none;
-  font-size: 0.7em;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  color:var(--sky);
+  text-transform:none;
+  font-size:.6em;
+  display:block;
+  margin-top:8px
 }
+ 
 .hero-sub {
-  font-family: var(--font-serif);
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(103,232,249,0.5);
-  opacity: 0; animation: fadeUp 0.6s 0.6s forwards;
+  font-family:var(--font-serif);
+  font-size:clamp(16px,2vw,20px);
+  font-weight:300;
+  font-style:italic;
+  color:rgba(103,232,249,.45);
+  opacity:0;
+  animation:hR .8s .7s var(--ease) forwards
 }
  
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+.hero-scroll {
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  opacity:0;
+  animation:hR .8s 1.2s var(--ease) forwards
 }
  
-/* ── SECTION HEADERS ── */
+.hero-scroll span {
+  display:block;
+  width:20px;
+  height:32px;
+  border:2px solid rgba(103,232,249,.3);
+  border-radius:12px;
+  position:relative
+}
+ 
+.hero-scroll span::after {
+  content:'';
+  position:absolute;
+  top:6px;
+  left:50%;
+  transform:translateX(-50%);
+  width:3px;
+  height:6px;
+  background:var(--cyan);
+  border-radius:2px;
+  animation:sDot 1.8s ease-in-out infinite
+}
+ 
+@keyframes sDot {
+  0%,100% {
+  opacity:1;
+  transform:translateX(-50%) translateY(0)
+}
+50% {
+  opacity:.3;
+  transform:translateX(-50%) translateY(10px)
+}
+ 
+}
+ 
+@keyframes hR {
+  from {
+  opacity:0;
+  transform:translateY(24px)
+}
+to {
+  opacity:1;
+  transform:translateY(0)
+}
+ 
+}
+ 
 .s-num {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 8px;
-}
-.s-title {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  line-height: 1.05;
-  color: var(--navy);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.s-desc {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--ocean);
-  max-width: 550px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:8px
 }
  
-/* ── COLOR PALETTE ── */
+.s-title {
+  font-size:clamp(28px,4vw,48px);
+  font-weight:900;
+  letter-spacing:-.5px;
+  line-height:1.05;
+  color:var(--navy);
+  text-transform:uppercase;
+  margin-bottom:8px
+}
+ 
+.s-desc {
+  font-family:var(--font-serif);
+  font-size:18px;
+  font-weight:300;
+  font-style:italic;
+  color:var(--ocean);
+  max-width:550px
+}
+ 
 .palette-row {
-  display: flex; gap: 0;
-  border-radius: 8px; overflow: hidden;
-  box-shadow: 0 2px 16px rgba(12,45,72,0.08);
-  margin-top: 40px;
+  display:flex;
+  gap:0;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(12,45,72,.08);
+  margin-top:40px
 }
+ 
 .chip {
-  flex: 1; min-height: 100px;
-  padding: 12px;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  cursor: pointer;
-  transition: flex 0.25s;
+  flex:1;
+  min-height:110px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  cursor:pointer;
+  transition:all .35s var(--ease);
+  position:relative;
+  overflow:hidden
 }
-.chip:hover { flex: 1.6; }
-.chip-name { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-.chip-hex { font-size: 10px; font-weight: 400; opacity: 0.7; }
-.chip.lt .chip-name, .chip.lt .chip-hex { color: var(--navy); }
-.chip.dk .chip-name, .chip.dk .chip-hex { color: var(--ice); }
+ 
+.chip::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 50%,rgba(255,255,255,.15) 100%);
+  opacity:0;
+  transition:opacity .35s
+}
+.chip:hover {
+  flex:2
+}
+.chip:hover::before {
+  opacity:1
+}
+ 
+.chip-name {
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  position:relative;
+  z-index:1;
+  transition:transform .3s
+}
+.chip-hex {
+  font-size:10px;
+  font-weight:400;
+  opacity:.7;
+  position:relative;
+  z-index:1
+}
+.chip:hover .chip-name {
+  transform:translateY(-2px)
+}
+ 
+.chip.lt .chip-name,.chip.lt .chip-hex {
+  color:var(--navy)
+}
+.chip.dk .chip-name,.chip.dk .chip-hex {
+  color:var(--ice)
+}
+ 
+.chip-copied {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  opacity:0;
+  transition:opacity .3s;
+  z-index:2
+}
+.chip.copied .chip-copied {
+  opacity:1
+}
  
 .usage-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 28px;
-}
-.usage-card {
-  background: var(--ice);
-  border-radius: 8px;
-  padding: 24px;
-}
-.usage-dot {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  margin-bottom: 12px;
-}
-.usage-title {
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-.usage-text {
-  font-size: 13px;
-  color: var(--deep);
-  line-height: 1.5;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:28px
 }
  
-/* ── TYPOGRAPHY ── */
+.usage-card {
+  padding:28px;
+  border-radius:16px
+}
+.usage-dot {
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  margin-bottom:14px;
+  transition:transform .4s var(--ease)
+}
+.usage-card:hover .usage-dot {
+  transform:scale(1.15)
+}
+ 
+.usage-title {
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:var(--navy);
+  margin-bottom:6px
+}
+.usage-text {
+  font-size:13px;
+  color:var(--deep);
+  line-height:1.55
+}
+ 
 .type-card {
-  background: var(--ice);
-  border-radius: 8px;
-  padding: 40px;
-  margin-top: 40px;
-  position: relative;
-  overflow: hidden;
+  border-radius:16px;
+  padding:48px;
+  margin-top:40px;
+  position:relative;
+  overflow:hidden
 }
+ 
 .type-tag {
-  position: absolute; top: 16px; right: 20px;
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--teal);
-  background: rgba(8,145,178,0.08);
-  padding: 4px 10px; border-radius: 4px;
+  position:absolute;
+  top:20px;
+  right:24px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--teal);
+  background:rgba(8,145,178,.06);
+  padding:5px 12px;
+  border-radius:6px;
+  backdrop-filter:blur(10px)
 }
+ 
 .type-headline {
-  font-weight: 900;
-  font-size: clamp(36px, 5vw, 56px);
-  line-height: 1;
-  color: var(--navy);
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  font-weight:900;
+  font-size:clamp(36px,5vw,56px);
+  line-height:1;
+  color:var(--navy);
+  text-transform:uppercase;
+  margin-bottom:10px
 }
+ 
 .type-quote {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(22px, 3vw, 32px);
-  line-height: 1.3;
-  color: var(--teal);
-  margin-bottom: 16px;
+  font-family:var(--font-serif);
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(22px,3vw,32px);
+  line-height:1.3;
+  color:var(--teal);
+  margin-bottom:18px
 }
+ 
 .type-body {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--deep);
-  max-width: 560px;
+  font-size:15px;
+  line-height:1.65;
+  color:var(--deep);
+  max-width:560px
 }
  
 .font-roles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:24px
 }
+ 
 .font-role {
-  background: var(--white);
-  border: 1px solid #E2EFF2;
-  padding: 24px;
-  border-radius: 8px;
+  background:var(--white);
+  border:1px solid rgba(8,145,178,.06);
+  padding:28px;
+  border-radius:16px;
+  transition:all .4s var(--ease)
 }
+.font-role:hover {
+  border-color:rgba(8,145,178,.12);
+  box-shadow:0 8px 32px rgba(8,145,178,.06);
+  transform:translateY(-2px)
+}
+ 
 .font-role-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 10px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:12px
 }
+ 
 .font-role-name {
-  font-size: 18px; font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 4px;
+  font-size:18px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:6px
 }
 .font-role-info {
-  font-size: 13px;
-  color: var(--ocean);
-  line-height: 1.6;
+  font-size:13px;
+  color:var(--ocean);
+  line-height:1.65
 }
  
-/* SCALE TABLE */
 .scale-table {
-  width: 100%; border-collapse: collapse; margin-top: 28px;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:28px
 }
 .scale-table th {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--ocean);
-  text-align: left;
-  padding: 10px 14px;
-  border-bottom: 2px solid #E2EFF2;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--ocean);
+  text-align:left;
+  padding:10px 14px;
+  border-bottom:2px solid rgba(8,145,178,.08)
 }
 .scale-table td {
-  padding: 14px;
-  border-bottom: 1px solid #F0F6F8;
-  vertical-align: middle;
+  padding:14px;
+  border-bottom:1px solid rgba(240,250,251,.8);
+  vertical-align:middle
+}
+.scale-table tr {
+  transition:background .2s
+}
+.scale-table tr:hover {
+  background:rgba(240,250,251,.5)
 }
 .scale-label {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase;
-  color: var(--ocean);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--ocean)
 }
  
-/* ── CONTENT PILLARS ── */
 .pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-  margin-top: 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:16px;
+  margin-top:40px
 }
+ 
 .pillar {
-  background: var(--ice);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: box-shadow 0.2s;
+  border-radius:16px;
+  overflow:hidden;
+  transition:all .4s var(--ease)
 }
 .pillar:hover {
-  box-shadow: 0 4px 20px rgba(8,145,178,0.1);
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(8,145,178,.1);
+  border-color:rgba(8,145,178,.15)
 }
+ 
 .pillar-top {
-  padding: 22px 22px 16px;
-  border-bottom: 1px solid rgba(8,145,178,0.08);
+  padding:24px 24px 18px;
+  border-bottom:1px solid rgba(8,145,178,.05)
 }
 .pillar-name {
-  font-size: 15px; font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--navy);
-  margin-bottom: 2px;
+  font-size:15px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--navy);
+  margin-bottom:2px
 }
 .pillar-freq {
-  font-size: 12px; font-weight: 500;
-  color: var(--teal);
+  font-size:12px;
+  font-weight:500;
+  color:var(--teal)
 }
+ 
 .pillar-ideas {
-  padding: 16px 22px 22px;
-  list-style: none;
+  padding:18px 24px 24px;
+  list-style:none
 }
 .pillar-ideas li {
-  font-size: 13px; color: var(--deep);
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(8,145,178,0.05);
-  line-height: 1.45;
+  font-size:13px;
+  color:var(--deep);
+  padding:7px 0;
+  border-bottom:1px solid rgba(8,145,178,.04);
+  line-height:1.5;
+  transition:padding-left .3s var(--ease)
 }
-.pillar-ideas li:last-child { border-bottom: none; }
+.pillar-ideas li:last-child {
+  border-bottom:none
+}
 .pillar-ideas li::before {
-  content: '→ ';
-  color: var(--cyan);
-  font-weight: 700;
+  content:'→ ';
+  color:var(--cyan);
+  font-weight:700
+}
+.pillar-ideas li:hover {
+  padding-left:6px
 }
  
-/* ── TEMPLATES ── */
 .templates-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-.tpl-wrap { text-align: center; }
-.tpl-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--ocean);
-  margin-bottom: 10px;
-}
-.tpl {
-  aspect-ratio: 1;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  padding: 28px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(12,45,72,0.12);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  margin-top:40px
 }
  
-/* ── VOICE ── */
-.voice-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 40px;
+.tpl-wrap {
+  text-align:center
 }
+.tpl-label {
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--ocean);
+  margin-bottom:12px
+}
+ 
+.tpl {
+  aspect-ratio:1;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:28px;
+  text-align:center;
+  position:relative;
+  box-shadow:0 4px 24px rgba(12,45,72,.12);
+  transition:all .5s var(--ease)
+}
+.tpl:hover {
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 20px 60px rgba(12,45,72,.18)
+}
+ 
+.voice-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:40px
+}
+ 
 .voice-card {
-  background: var(--ice);
-  border-radius: 8px;
-  padding: 28px;
+  padding:30px;
+  border-radius:16px
 }
 .voice-type {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 12px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:14px
 }
 .voice-example {
-  font-family: var(--font-serif);
-  font-size: 17px;
-  font-style: italic;
-  color: var(--navy);
-  line-height: 1.55;
-  margin-bottom: 10px;
+  font-family:var(--font-serif);
+  font-size:17px;
+  font-style:italic;
+  color:var(--navy);
+  line-height:1.55;
+  margin-bottom:12px
 }
 .voice-note {
-  font-size: 12px;
-  color: var(--ocean);
-  line-height: 1.5;
+  font-size:12px;
+  color:var(--ocean);
+  line-height:1.5
 }
  
 .do-dont {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
-}
-.do-col, .dont-col {
-  padding: 24px;
-  border-radius: 8px;
-}
-.do-col { background: #ECFDF5; }
-.dont-col { background: #FEF2F2; }
-.dd-label {
-  font-size: 11px; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.do-col .dd-label { color: #047857; }
-.dont-col .dd-label { color: #B91C1C; }
-.dd-list { list-style: none; }
-.dd-list li {
-  font-size: 13px; color: var(--navy);
-  padding: 3px 0; line-height: 1.45;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:24px
 }
  
-/* ── HASHTAGS ── */
+.do-col,.dont-col {
+  padding:28px;
+  border-radius:16px;
+  transition:transform .3s var(--ease)
+}
+.do-col:hover,.dont-col:hover {
+  transform:translateY(-2px)
+}
+.do-col {
+  background:#ECFDF5;
+  border:1px solid rgba(4,120,87,.08)
+}
+.dont-col {
+  background:#FEF2F2;
+  border:1px solid rgba(185,28,28,.08)
+}
+ 
+.dd-label {
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px
+}
+.do-col .dd-label {
+  color:#047857
+}
+.dont-col .dd-label {
+  color:#B91C1C
+}
+.dd-list {
+  list-style:none
+}
+.dd-list li {
+  font-size:13px;
+  color:var(--navy);
+  padding:4px 0;
+  line-height:1.5
+}
+ 
 .hashtag-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:32px
 }
 .hashtag-group {
-  background: var(--ice);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius:16px;
+  padding:22px
 }
 .hg-title {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.tag {
-  display: inline-block;
-  font-size: 12px; font-weight: 600;
-  color: var(--teal);
-  background: rgba(8,145,178,0.08);
-  padding: 4px 10px;
-  border-radius: 4px;
-  margin: 3px 2px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--navy);
+  margin-bottom:12px
 }
  
-/* ── PHOTO DIRECTION ── */
+.tag {
+  display:inline-block;
+  font-size:12px;
+  font-weight:600;
+  color:var(--teal);
+  background:rgba(8,145,178,.06);
+  padding:5px 12px;
+  border-radius:8px;
+  margin:3px 2px;
+  transition:all .25s var(--ease);
+  cursor:default
+}
+.tag:hover {
+  background:rgba(8,145,178,.12);
+  color:var(--navy);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(8,145,178,.08)
+}
+ 
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 40px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:40px
 }
+ 
 .photo-card {
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
+  border-radius:16px;
+  overflow:hidden;
+  transition:all .5s var(--ease)
 }
+.photo-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 16px 48px rgba(12,45,72,.15)
+}
+ 
 .photo-inner {
-  aspect-ratio: 4/5;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px;
+  aspect-ratio:4/5;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:28px;
+  position:relative;
+  overflow:hidden
 }
+ 
+.photo-inner::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.3) 100%);
+  opacity:0;
+  transition:opacity .4s
+}
+.photo-card:hover .photo-inner::before {
+  opacity:1
+}
+ 
 .photo-name {
-  font-size: 14px; font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
+  font-size:14px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  margin-bottom:6px;
+  position:relative;
+  z-index:1
 }
 .photo-desc {
-  font-size: 12px; line-height: 1.45; opacity: 0.85;
+  font-size:12px;
+  line-height:1.5;
+  opacity:.85;
+  position:relative;
+  z-index:1
 }
 .photo-tip {
-  font-size: 10px; font-weight: 600;
-  opacity: 0.55;
-  margin-top: 4px;
+  font-size:10px;
+  font-weight:600;
+  opacity:.55;
+  margin-top:4px;
+  position:relative;
+  z-index:1
 }
  
-/* ── FOOTER ── */
 .kit-footer {
-  background: var(--navy);
-  padding: 60px 0;
-  text-align: center;
+  background:var(--midnight);
+  padding:72px 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden
 }
+ 
+.kit-footer::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(8,145,178,.08) 0%,transparent 60%)
+}
+ 
 .f-brand {
-  font-size: 18px; font-weight: 900;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--sky);
-  margin-bottom: 4px;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--sky);
+  margin-bottom:6px;
+  position:relative
 }
 .f-tag {
-  font-family: var(--font-serif);
-  font-size: 16px; font-style: italic;
-  color: rgba(103,232,249,0.35);
-  margin-bottom: 24px;
+  font-family:var(--font-serif);
+  font-size:16px;
+  font-style:italic;
+  color:rgba(103,232,249,.3);
+  margin-bottom:28px;
+  position:relative
 }
 .f-handles {
-  display: flex; justify-content: center; gap: 24px;
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  position:relative
 }
 .f-handle {
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 1px;
-  color: rgba(103,232,249,0.3);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:1px;
+  color:rgba(103,232,249,.25)
 }
 .f-note {
-  margin-top: 28px;
-  font-size: 10px;
-  color: rgba(103,232,249,0.15);
-  letter-spacing: 1px;
+  margin-top:28px;
+  font-size:10px;
+  color:rgba(103,232,249,.12);
+  letter-spacing:1px;
+  position:relative
 }
  
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  /* Layout */
-  .container { padding: 0 20px; }
-  .section { padding: 56px 0; }
- 
-  /* Nav */
-  .nav-links { display: none; }
-  .nav-inner { padding: 0 20px; }
- 
-  /* Hero */
-  .hero { min-height: 60vh; padding: 80px 20px 60px; }
-  .hero-title { font-size: clamp(32px, 10vw, 56px); letter-spacing: -0.5px; }
-  .hero-title em { font-size: 0.55em; }
-  .hero-label { font-size: 10px; letter-spacing: 3px; margin-bottom: 20px; }
-  .hero-sub { font-size: 15px; }
- 
-  /* Section headers */
-  .s-title { font-size: clamp(24px, 7vw, 36px); }
-  .s-desc { font-size: 16px; }
- 
-  /* Color palette — stack chips into a 3x3 grid on mobile */
-  .palette-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-radius: 8px;
-  }
-  .chip {
-    min-height: 80px;
-    padding: 10px;
-  }
-  .chip:hover { flex: 1; }
-  .chip-name { font-size: 9px; }
-  .chip-hex { font-size: 9px; }
- 
-  /* Usage cards */
-  .usage-grid { grid-template-columns: 1fr; }
- 
-  /* Typography */
-  .type-card { padding: 24px; }
-  .type-headline { font-size: clamp(28px, 8vw, 40px); }
-  .type-quote { font-size: clamp(18px, 5vw, 24px); }
-  .font-roles { grid-template-columns: 1fr; }
- 
-  /* Scale table — make scrollable */
-  .scale-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .scale-table td, .scale-table th { white-space: nowrap; padding: 10px 12px; }
- 
-  /* Content pillars */
-  .pillars-grid { grid-template-columns: 1fr; }
- 
-  /* Templates — single column, constrain size */
-  .templates-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .tpl { font-size: 14px; }
- 
-  /* Voice */
-  .voice-grid { grid-template-columns: 1fr; }
-  .voice-card { padding: 22px; }
-  .voice-example { font-size: 15px; }
-  .do-dont { grid-template-columns: 1fr; }
- 
-  /* Hashtags */
-  .hashtag-row { grid-template-columns: 1fr; }
- 
-  /* Photo grid */
-  .photo-grid { grid-template-columns: 1fr; }
-  .photo-inner { aspect-ratio: auto; min-height: 200px; }
- 
-  /* Footer */
-  .f-handles { flex-direction: column; gap: 8px; align-items: center; }
-  .f-brand { font-size: 15px; letter-spacing: 3px; }
-  .f-tag { font-size: 14px; }
-  .kit-footer { padding: 48px 0; }
+@media (max-width:768px) {
+  .container {
+  padding:0 20px
+}
+.section {
+  padding:64px 0
+}
+.nav-links {
+  display:none
+}
+.nav-inner {
+  padding:0 20px
+}
+.hero {
+  min-height:80vh;
+  padding:80px 20px 60px
+}
+.hero-title {
+  font-size:clamp(28px,10vw,48px)
+}
+.hero-title em {
+  font-size:.5em
+}
+.hero-scroll {
+  display:none
+}
+.s-title {
+  font-size:clamp(22px,7vw,34px)
+}
+.s-desc {
+  font-size:16px
+}
+.palette-row {
+  display:grid;
+  grid-template-columns:repeat(3,1fr)
+}
+.chip {
+  min-height:80px;
+  padding:10px
+}
+.chip:hover {
+  flex:1
+}
+.chip-name {
+  font-size:9px
+}
+.chip-hex {
+  font-size:9px
+}
+.usage-grid {
+  grid-template-columns:1fr
+}
+.type-card {
+  padding:24px
+}
+.type-headline {
+  font-size:clamp(26px,8vw,38px)
+}
+.font-roles {
+  grid-template-columns:1fr
+}
+.scale-table {
+  display:block;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch
+}
+.scale-table td,.scale-table th {
+  white-space:nowrap;
+  padding:10px 12px
+}
+.pillars-grid {
+  grid-template-columns:1fr
+}
+.templates-grid {
+  grid-template-columns:1fr;
+  max-width:380px;
+  margin-left:auto;
+  margin-right:auto
+}
+.voice-grid {
+  grid-template-columns:1fr
+}
+.do-dont {
+  grid-template-columns:1fr
+}
+.hashtag-row {
+  grid-template-columns:1fr
+}
+.photo-grid {
+  grid-template-columns:1fr
+}
+.photo-inner {
+  aspect-ratio:auto;
+  min-height:220px
+}
+.f-handles {
+  flex-direction:column;
+  gap:8px
+}
+.f-brand {
+  font-size:15px;
+  letter-spacing:3px
+}
+.kit-footer {
+  padding:48px 0
+}
+.tpl:hover,.photo-card:hover,.glass:hover {
+  transform:none
+}
+.pillar:hover {
+  transform:none
 }
  
-/* Small phones */
-@media (max-width: 400px) {
-  .container { padding: 0 16px; }
-  .hero-title { font-size: 28px; }
-  .hero-title em { font-size: 0.5em; display: block; margin-top: 8px; }
-  .s-title { font-size: 22px; }
-  .palette-row { grid-template-columns: repeat(3, 1fr); }
-  .chip { min-height: 70px; padding: 8px; }
-  .chip-name { font-size: 8px; letter-spacing: 0; }
-  .chip-hex { font-size: 8px; }
-  .type-headline { font-size: 26px; }
-  .pillar-name { font-size: 14px; }
-  .tpl { padding: 20px; }
-  .templates-grid { max-width: 100%; }
 }
+ 
+@media (max-width:400px) {
+  .container {
+  padding:0 16px
+}
+.hero-title {
+  font-size:26px
+}
+.s-title {
+  font-size:20px
+}
+.type-headline {
+  font-size:24px
+}
+.chip {
+  min-height:68px;
+  padding:8px
+}
+.chip-name {
+  font-size:8px
+}
+.chip-hex {
+  font-size:8px
+}
+ 
+}
+ 
+ 
 </style>
 </head>
 <body>
- 
-<!-- NAV -->
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <div class="nav-inner">
     <div class="nav-brand">CE Toronto</div>
     <ul class="nav-links">
@@ -626,623 +1140,150 @@ body {
     </ul>
   </div>
 </nav>
- 
-<!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
   <div class="hero-content">
     <div class="hero-label">Brand Kit · 2026</div>
     <h1 class="hero-title">CE TORONTO-<br>MISSISSAUGA<br><em>Social Media Brand Kit</em></h1>
     <p class="hero-sub">Everything the team needs to post on brand, every time.</p>
   </div>
+  <div class="hero-scroll"><span></span></div>
 </section>
  
-<!-- ═══════ 01 — COLORS ═══════ -->
-<section class="section" id="colors">
-  <div class="container">
-    <div class="s-num">01 — Colors</div>
-    <div class="s-title">THE PALETTE</div>
-    <div class="s-desc">Click any swatch to copy its hex code.</div>
- 
-    <div class="palette-row">
-      <div class="chip lt" style="background:var(--ice)" onclick="copyHex(this)"><div class="chip-name">Ice</div><div class="chip-hex">#F0FAFB</div></div>
-      <div class="chip lt" style="background:var(--frost)" onclick="copyHex(this)"><div class="chip-name">Frost</div><div class="chip-hex">#D5F0F5</div></div>
-      <div class="chip lt" style="background:var(--sky)" onclick="copyHex(this)"><div class="chip-name">Sky</div><div class="chip-hex">#67E8F9</div></div>
-      <div class="chip dk" style="background:var(--cyan)" onclick="copyHex(this)"><div class="chip-name">Cyan</div><div class="chip-hex">#22D3EE</div></div>
-      <div class="chip dk" style="background:var(--teal)" onclick="copyHex(this)"><div class="chip-name">Teal</div><div class="chip-hex">#0891B2</div></div>
-      <div class="chip dk" style="background:var(--ocean)" onclick="copyHex(this)"><div class="chip-name">Ocean</div><div class="chip-hex">#0E7490</div></div>
-      <div class="chip dk" style="background:var(--deep)" onclick="copyHex(this)"><div class="chip-name">Deep</div><div class="chip-hex">#155E75</div></div>
-      <div class="chip dk" style="background:var(--navy)" onclick="copyHex(this)"><div class="chip-name">Navy</div><div class="chip-hex">#0C2D48</div></div>
-      <div class="chip dk" style="background:var(--midnight)" onclick="copyHex(this)"><div class="chip-name">Midnight</div><div class="chip-hex">#071A2E</div></div>
-    </div>
- 
-    <div class="usage-grid">
-      <div class="usage-card">
-        <div class="usage-dot" style="background: linear-gradient(135deg, var(--navy), var(--midnight));"></div>
-        <div class="usage-title">Dark backgrounds</div>
-        <div class="usage-text">Navy or Midnight for post backgrounds, story backgrounds, and cinematic templates. White or Sky text on top.</div>
-      </div>
-      <div class="usage-card">
-        <div class="usage-dot" style="background: linear-gradient(135deg, var(--ice), var(--white));"></div>
-        <div class="usage-title">Light backgrounds</div>
-        <div class="usage-text">White or Ice for devotionals, quotes, and clean layouts. Navy text, Teal accents.</div>
-      </div>
-      <div class="usage-card">
-        <div class="usage-dot" style="background: linear-gradient(135deg, var(--cyan), var(--sky));"></div>
-        <div class="usage-title">Accent / highlight</div>
-        <div class="usage-text">Cyan and Sky for labels, buttons, tags, links, and anything that needs to pop. Never use as a background — only as accent.</div>
-      </div>
-    </div>
+<section class="section" id="colors"><div class="container">
+  <div class="reveal"><div class="s-num">01 — Colors</div><div class="s-title">THE PALETTE</div><div class="s-desc">Click any swatch to copy its hex code.</div></div>
+    <div class="palette-row reveal-s">
+    <div class="chip lt" style="background:var(--ice)" onclick="copyHex(this)"><div class="chip-name">Ice</div><div class="chip-hex">#F0FAFB</div><div class="chip-copied" style="color:var(--navy)">Copied</div></div>
+    <div class="chip lt" style="background:var(--frost)" onclick="copyHex(this)"><div class="chip-name">Frost</div><div class="chip-hex">#D5F0F5</div><div class="chip-copied" style="color:var(--navy)">Copied</div></div>
+    <div class="chip lt" style="background:var(--sky)" onclick="copyHex(this)"><div class="chip-name">Sky</div><div class="chip-hex">#67E8F9</div><div class="chip-copied" style="color:var(--navy)">Copied</div></div>
+    <div class="chip dk" style="background:var(--cyan)" onclick="copyHex(this)"><div class="chip-name">Cyan</div><div class="chip-hex">#22D3EE</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
+    <div class="chip dk" style="background:var(--teal)" onclick="copyHex(this)"><div class="chip-name">Teal</div><div class="chip-hex">#0891B2</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
+    <div class="chip dk" style="background:var(--ocean)" onclick="copyHex(this)"><div class="chip-name">Ocean</div><div class="chip-hex">#0E7490</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
+    <div class="chip dk" style="background:var(--deep)" onclick="copyHex(this)"><div class="chip-name">Deep</div><div class="chip-hex">#155E75</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
+    <div class="chip dk" style="background:var(--navy)" onclick="copyHex(this)"><div class="chip-name">Navy</div><div class="chip-hex">#0C2D48</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
+    <div class="chip dk" style="background:var(--midnight)" onclick="copyHex(this)"><div class="chip-name">Midnight</div><div class="chip-hex">#071A2E</div><div class="chip-copied" style="color:var(--ice)">Copied</div></div>
   </div>
-</section>
- 
-<!-- ═══════ 02 — TYPOGRAPHY ═══════ -->
-<section class="section" id="type">
-  <div class="container">
-    <div class="s-num">02 — Typography</div>
-    <div class="s-title">TWO FONTS. TWO JOBS.</div>
-    <div class="s-desc">Montserrat for impact. Crimson Pro for elegance.</div>
- 
-    <div class="type-card">
-      <div class="type-tag">Specimen</div>
-      <div class="type-headline">THIS SUNDAY IS<br>DIFFERENT</div>
-      <div class="type-quote">"Come as you are. Leave changed."</div>
-      <div class="type-body">Join us this Sunday at 10 AM as we continue our series on faith in the everyday. Doors open at 9:30 AM — come early, grab coffee, and find your people.</div>
-    </div>
- 
-    <div class="font-roles">
-      <div class="font-role">
-        <div class="font-role-label">Headlines + Labels</div>
-        <div class="font-role-name" style="font-weight:900; font-size: 24px;">Montserrat</div>
-        <div class="font-role-info">
-          Black (900) — hero headlines, event titles<br>
-          Bold (700) — section headers, post titles<br>
-          SemiBold (600) — labels, tags, buttons<br>
-          Medium (500) — captions, nav, small text<br><br>
-          Always uppercase for headlines. Letter-spacing 0.5–3px.
-        </div>
-      </div>
-      <div class="font-role">
-        <div class="font-role-label">Quotes + Scripture + Body</div>
-        <div class="font-role-name" style="font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: 26px;">Crimson Pro</div>
-        <div class="font-role-info">
-          Light Italic (300) — devotional quotes, scripture<br>
-          Regular (400) — body paragraphs, longer text<br>
-          SemiBold (600) — emphasized scripture<br><br>
-          Use for anything that should feel personal, reflective, or elegant.
-        </div>
-      </div>
-    </div>
- 
-    <table class="scale-table">
-      <thead>
-        <tr><th>Element</th><th>Font</th><th>Size</th><th>Preview</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="scale-label">Hero</td>
-          <td>Montserrat 900</td>
-          <td>48–100px</td>
-          <td style="font-weight:900; font-size:36px; line-height:1; color:var(--navy); text-transform:uppercase;">GOOD FRIDAY</td>
-        </tr>
-        <tr>
-          <td class="scale-label">H1</td>
-          <td>Montserrat 800</td>
-          <td>28–44px</td>
-          <td style="font-weight:800; font-size:28px; line-height:1; color:var(--navy); text-transform:uppercase;">THIS SUNDAY</td>
-        </tr>
-        <tr>
-          <td class="scale-label">H2</td>
-          <td>Montserrat 700</td>
-          <td>18–24px</td>
-          <td style="font-weight:700; font-size:20px; letter-spacing:1px; color:var(--navy); text-transform:uppercase;">SERVICE TIMES</td>
-        </tr>
-        <tr>
-          <td class="scale-label">Quote</td>
-          <td>Crimson Pro 300 Italic</td>
-          <td>20–36px</td>
-          <td style="font-family:var(--font-serif); font-weight:300; font-style:italic; font-size:22px; color:var(--teal);">"Faith is the substance..."</td>
-        </tr>
-        <tr>
-          <td class="scale-label">Body</td>
-          <td>Crimson Pro 400</td>
-          <td>15–16px</td>
-          <td style="font-family:var(--font-serif); font-size:15px; color:var(--deep);">Join us this Sunday at 10 AM for worship and the Word.</td>
-        </tr>
-        <tr>
-          <td class="scale-label">Label</td>
-          <td>Montserrat 600</td>
-          <td>10–12px</td>
-          <td style="font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--teal);">EVERY SUNDAY · 10 AM</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="usage-grid stagger">
+    <div class="usage-card glass si reveal"><div class="usage-dot" style="background:linear-gradient(135deg,var(--navy),var(--midnight))"></div><div class="usage-title">Dark backgrounds</div><div class="usage-text">Navy or Midnight for post backgrounds, story backgrounds, and cinematic templates. White or Sky text on top.</div></div>
+    <div class="usage-card glass si reveal"><div class="usage-dot" style="background:linear-gradient(135deg,var(--ice),var(--white))"></div><div class="usage-title">Light backgrounds</div><div class="usage-text">White or Ice for devotionals, quotes, and clean layouts. Navy text, Teal accents.</div></div>
+    <div class="usage-card glass si reveal"><div class="usage-dot" style="background:linear-gradient(135deg,var(--cyan),var(--sky))"></div><div class="usage-title">Accent / highlight</div><div class="usage-text">Cyan and Sky for labels, buttons, tags, links, and anything that needs to pop. Never use as a background — only as accent.</div></div>
   </div>
-</section>
+</div></section>
  
-<!-- ═══════ 03 — CONTENT PILLARS ═══════ -->
-<section class="section" id="pillars">
-  <div class="container">
-    <div class="s-num">03 — What to Post</div>
-    <div class="s-title">CONTENT PILLARS</div>
-    <div class="s-desc">Seven types of content. Post ideas for each.</div>
  
-    <div class="pillars-grid">
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Sunday Service</div>
-          <div class="pillar-freq">2–3x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>"This Sunday" promo with time + topic</li>
-          <li>30-sec worship clip or sermon moment</li>
-          <li>Photo carousel: people, worship, Word</li>
-          <li>Monday recap with key quote from message</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Quotes &amp; Devotionals</div>
-          <div class="pillar-freq">3–4x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Scripture of the day — clean, editorial layout</li>
-          <li>Pastor quote on cinematic still from Sunday</li>
-          <li>Midweek encouragement: relatable caption + visual</li>
-          <li>Rhapsody of Realities daily confession</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Pastor &amp; Leadership</div>
-          <div class="pillar-freq">1–2x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Portrait photo with sermon quote overlay</li>
-          <li>60-second sermon clip for Reels/TikTok</li>
-          <li>Leadership spotlight: who's behind the scenes</li>
-          <li>Q&A story series with the Pastor</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Events &amp; The Hub</div>
-          <div class="pillar-freq">Event-driven</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Football tournament — bold, high-energy design</li>
-          <li>Healing Streams Live — countdown + streaming link</li>
-          <li>The Hub youth events: socials, sports, dev nights</li>
-          <li>Post-event photo dump carousel</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Behind the Scenes</div>
-          <div class="pillar-freq">1–2x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Media team setting up before service</li>
-          <li>Volunteers in action: ushers, kids church</li>
-          <li>Before/after: empty room to full worship</li>
-          <li>"Day in the life" Reel following a team member</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Testimonies</div>
-          <div class="pillar-freq">1x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Member story: photo + written testimony carousel</li>
-          <li>Video testimony: 60–90 sec sit-down interview</li>
-          <li>"God did this" — text-on-screen Reel with music</li>
-          <li>Healing Streams testimony spotlight</li>
-        </ul>
-      </div>
-      <div class="pillar">
-        <div class="pillar-top">
-          <div class="pillar-name">Reels &amp; Short-Form</div>
-          <div class="pillar-freq">3–5x per week</div>
-        </div>
-        <ul class="pillar-ideas">
-          <li>Worship clip with lyrics overlay — cinematic</li>
-          <li>Sermon punchline moment — 15-sec hook</li>
-          <li>Trending audio with church twist</li>
-          <li>POV: walking into CE Toronto for the first time</li>
-        </ul>
-      </div>
-    </div>
+<section class="section" id="type"><div class="container">
+  <div class="reveal"><div class="s-num">02 — Typography</div><div class="s-title">TWO FONTS. TWO JOBS.</div><div class="s-desc">Montserrat for impact. Crimson Pro for elegance.</div></div>
+    <div class="type-card glass reveal-s"><div class="type-tag">Specimen</div><div class="type-headline">THIS SUNDAY IS<br>DIFFERENT</div><div class="type-quote">"Come as you are. Leave changed."</div><div class="type-body">Join us this Sunday at 10 AM as we continue our series on faith in the everyday. Doors open at 9:30 AM — come early, grab coffee, and find your people.</div></div>
+    <div class="font-roles stagger">
+    <div class="font-role glass si reveal"><div class="font-role-label">Headlines + Labels</div><div class="font-role-name" style="font-weight:900;font-size:24px">Montserrat</div><div class="font-role-info">Black (900) — hero headlines, event titles<br>Bold (700) — section headers, post titles<br>SemiBold (600) — labels, tags, buttons<br>Medium (500) — captions, nav, small text<br><br>Always uppercase for headlines. Letter-spacing 0.5–3px.</div></div>
+    <div class="font-role glass si reveal"><div class="font-role-label">Quotes + Scripture + Body</div><div class="font-role-name" style="font-family:var(--font-serif);font-weight:400;font-style:italic;font-size:26px">Crimson Pro</div><div class="font-role-info">Light Italic (300) — devotional quotes, scripture<br>Regular (400) — body paragraphs, longer text<br>SemiBold (600) — emphasized scripture<br><br>Use for anything that should feel personal, reflective, or elegant.</div></div>
   </div>
-</section>
+  <div class="reveal"><table class="scale-table"><thead><tr><th>Element</th><th>Font</th><th>Size</th><th>Preview</th></tr></thead><tbody>
+    <tr><td class="scale-label">Hero</td><td>Montserrat 900</td><td>48–100px</td><td style="font-weight:900;font-size:36px;line-height:1;color:var(--navy);text-transform:uppercase">GOOD FRIDAY</td></tr>
+    <tr><td class="scale-label">H1</td><td>Montserrat 800</td><td>28–44px</td><td style="font-weight:800;font-size:28px;line-height:1;color:var(--navy);text-transform:uppercase">THIS SUNDAY</td></tr>
+    <tr><td class="scale-label">H2</td><td>Montserrat 700</td><td>18–24px</td><td style="font-weight:700;font-size:20px;letter-spacing:1px;color:var(--navy);text-transform:uppercase">SERVICE TIMES</td></tr>
+    <tr><td class="scale-label">Quote</td><td>Crimson Pro 300 Italic</td><td>20–36px</td><td style="font-family:var(--font-serif);font-weight:300;font-style:italic;font-size:22px;color:var(--teal)">"Faith is the substance..."</td></tr>
+    <tr><td class="scale-label">Body</td><td>Crimson Pro 400</td><td>15–16px</td><td style="font-family:var(--font-serif);font-size:15px;color:var(--deep)">Join us this Sunday at 10 AM for worship and the Word.</td></tr>
+    <tr><td class="scale-label">Label</td><td>Montserrat 600</td><td>10–12px</td><td style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal)">EVERY SUNDAY · 10 AM</td></tr>
+  </tbody></table></div>
+</div></section>
  
-<!-- ═══════ 04 — TEMPLATES ═══════ -->
-<section class="section" id="templates">
-  <div class="container">
-    <div class="s-num">04 — Templates</div>
-    <div class="s-title">HOW POSTS LOOK</div>
-    <div class="s-desc">The visual language across different post types.</div>
  
-    <div class="templates-grid">
- 
-      <!-- Sunday Service -->
-      <div class="tpl-wrap">
-        <div class="tpl-label">Sunday Service</div>
-        <div class="tpl" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--navy) 60%, var(--deep) 100%);">
-          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%, rgba(34,211,238,0.1) 0%, transparent 60%);"></div>
-          <div style="position:relative;z-index:2;">
-            <div style="font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); margin-bottom:20px;">Every Sunday · 10 AM</div>
-            <div style="font-weight:900; font-size:34px; line-height:0.95; color:var(--white); text-transform:uppercase; margin-bottom:10px;">THIS<br>SUNDAY</div>
-            <div style="font-family:var(--font-serif); font-size:18px; font-style:italic; font-weight:300; color:rgba(103,232,249,0.6); margin-bottom:20px;">"Walking by faith,<br>not by sight"</div>
-            <div style="font-size:11px; font-weight:500; color:rgba(255,255,255,0.3);">@cetorontocan</div>
-          </div>
-        </div>
-      </div>
- 
-      <!-- Quote / Devotional -->
-      <div class="tpl-wrap">
-        <div class="tpl-label">Quote / Devotional</div>
-        <div class="tpl" style="background: var(--ice);">
-          <div style="position:relative;z-index:2; padding:12px;">
-            <div style="font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--teal); margin-bottom:28px;">Daily Devotional</div>
-            <div style="font-family:var(--font-serif); font-size:22px; font-weight:300; font-style:italic; color:var(--navy); line-height:1.4; margin-bottom:16px;">"For I know the plans I have for you, declares the Lord"</div>
-            <div style="width:36px; height:2px; background:var(--cyan); margin:0 auto 12px;"></div>
-            <div style="font-size:12px; font-weight:600; color:var(--ocean);">Jeremiah 29:11</div>
-            <div style="font-size:10px; font-weight:500; color:var(--teal); margin-top:24px; letter-spacing:2px;">@CETORONTOCAN</div>
-          </div>
-        </div>
-      </div>
- 
-      <!-- Event / The Hub -->
-      <div class="tpl-wrap">
-        <div class="tpl-label">Event — The Hub</div>
-        <div class="tpl" style="background: linear-gradient(160deg, var(--midnight) 0%, var(--deep) 100%);">
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 55% 50%, rgba(8,145,178,0.2) 0%, transparent 50%);"></div>
-          <div style="position:relative;z-index:2;">
-            <div style="font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--sky); margin-bottom:6px;">The Hub Presents</div>
-            <div style="font-weight:900; font-size:36px; line-height:0.92; color:var(--white); text-transform:uppercase; margin-bottom:6px;">FOOTBALL<br>TOURNAMENT</div>
-            <div style="font-family:var(--font-serif); font-size:14px; font-style:italic; font-weight:300; color:rgba(103,232,249,0.5); margin-bottom:20px;">Lace up. Show up. Bring your team.</div>
-            <div style="display:flex; gap:12px; justify-content:center; margin-bottom:16px;">
-              <div style="background:rgba(103,232,249,0.1); padding:6px 14px; border-radius:4px;">
-                <div style="font-size:10px; font-weight:700; color:var(--sky); letter-spacing:1px;">SAT APR 12</div>
-              </div>
-              <div style="background:rgba(103,232,249,0.1); padding:6px 14px; border-radius:4px;">
-                <div style="font-size:10px; font-weight:700; color:var(--sky); letter-spacing:1px;">2 PM</div>
-              </div>
-            </div>
-            <div style="font-size:10px; font-weight:500; color:rgba(255,255,255,0.3);">Register → Link in Bio</div>
-          </div>
-        </div>
-      </div>
- 
-      <!-- Healing Streams -->
-      <div class="tpl-wrap">
-        <div class="tpl-label">Healing Streams</div>
-        <div class="tpl" style="background: linear-gradient(175deg, var(--midnight) 0%, #0A2035 50%, var(--navy) 100%);">
-          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%, rgba(34,211,238,0.08) 0%, transparent 50%);"></div>
-          <div style="position:relative;z-index:2;">
-            <div style="font-size:9px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--cyan); margin-bottom:18px;">Live Healing Services</div>
-            <div style="font-weight:900; font-size:32px; line-height:1; color:var(--white); text-transform:uppercase; margin-bottom:4px;">HEALING</div>
-            <div style="font-family:var(--font-serif); font-size:38px; font-style:italic; font-weight:300; color:var(--sky); line-height:1;">Streams</div>
-            <div style="font-family:var(--font-serif); font-size:14px; font-weight:300; font-style:italic; color:rgba(255,255,255,0.35); margin:18px 0 20px;">"By His stripes, we are healed"</div>
-            <div style="font-size:10px; font-weight:700; letter-spacing:2px; color:var(--cyan);">HEALINGSTREAMS.TV</div>
-          </div>
-        </div>
-      </div>
- 
-    </div>
+<section class="section" id="pillars"><div class="container">
+  <div class="reveal"><div class="s-num">03 — What to Post</div><div class="s-title">CONTENT PILLARS</div><div class="s-desc">Seven types of content. Post ideas for each.</div></div>
+    <div class="pillars-grid stagger">
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Sunday Service</div><div class="pillar-freq">2–3x per week</div></div><ul class="pillar-ideas"><li>"This Sunday" promo with time + topic</li><li>30-sec worship clip or sermon moment</li><li>Photo carousel: people, worship, Word</li><li>Monday recap with key quote from message</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Quotes &amp; Devotionals</div><div class="pillar-freq">3–4x per week</div></div><ul class="pillar-ideas"><li>Scripture of the day — clean, editorial layout</li><li>Pastor quote on cinematic still from Sunday</li><li>Midweek encouragement: relatable caption + visual</li><li>Rhapsody of Realities daily confession</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Pastor &amp; Leadership</div><div class="pillar-freq">1–2x per week</div></div><ul class="pillar-ideas"><li>Portrait photo with sermon quote overlay</li><li>60-second sermon clip for Reels/TikTok</li><li>Leadership spotlight: who's behind the scenes</li><li>Q&A story series with the Pastor</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Events &amp; The Hub</div><div class="pillar-freq">Event-driven</div></div><ul class="pillar-ideas"><li>Football tournament — bold, high-energy design</li><li>Healing Streams Live — countdown + streaming link</li><li>The Hub youth events: socials, sports, dev nights</li><li>Post-event photo dump carousel</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Behind the Scenes</div><div class="pillar-freq">1–2x per week</div></div><ul class="pillar-ideas"><li>Media team setting up before service</li><li>Volunteers in action: ushers, kids church</li><li>Before/after: empty room to full worship</li><li>"Day in the life" Reel following a team member</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Testimonies</div><div class="pillar-freq">1x per week</div></div><ul class="pillar-ideas"><li>Member story: photo + written testimony carousel</li><li>Video testimony: 60–90 sec sit-down interview</li><li>"God did this" — text-on-screen Reel with music</li><li>Healing Streams testimony spotlight</li></ul></div>
+    <div class="pillar glass si"><div class="pillar-top"><div class="pillar-name">Reels &amp; Short-Form</div><div class="pillar-freq">3–5x per week</div></div><ul class="pillar-ideas"><li>Worship clip with lyrics overlay — cinematic</li><li>Sermon punchline moment — 15-sec hook</li><li>Trending audio with church twist</li><li>POV: walking into CE Toronto for the first time</li></ul></div>
   </div>
-</section>
+</div></section>
  
-<!-- ═══════ 05 — VOICE & TONE ═══════ -->
-<section class="section" id="voice">
-  <div class="container">
-    <div class="s-num">05 — Voice &amp; Tone</div>
-    <div class="s-title">HOW WE SPEAK</div>
-    <div class="s-desc">Casual, warm, real. Like texting a friend who has something powerful to say.</div>
  
-    <div class="voice-grid">
-      <div class="voice-card">
-        <div class="voice-type">Sunday Caption</div>
-        <div class="voice-example">"That moment when worship hits different and you forget you had a rough week. See you Sunday. 10 AM. Don't be late."</div>
-        <div class="voice-note">Casual, warm. Not a corporate announcement — a friend texting you.</div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-type">Event Promo</div>
-        <div class="voice-example">"The Hub Football Tournament is BACK. Grab your squad, lace up, and come ready to compete. Bragging rights are on the line."</div>
-        <div class="voice-note">Energetic, direct. Short sentences. Action-oriented.</div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-type">Devotional</div>
-        <div class="voice-example">"Some days faith feels easy. Some days it feels like you're carrying the weight of everything. Either way — He's carrying you."</div>
-        <div class="voice-note">Honest, gentle, conversational. Meets people where they are.</div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-type">Behind the Scenes</div>
-        <div class="voice-example">"POV: the media team at 7 AM making sure everything sounds right so you can have the best Sunday. These are the real MVPs."</div>
-        <div class="voice-note">Fun, appreciative, a little playful.</div>
-      </div>
-    </div>
- 
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="dd-label">We say</div>
-        <ul class="dd-list">
-          <li>→ "Come as you are"</li>
-          <li>→ "You belong here"</li>
-          <li>→ "See you Sunday"</li>
-          <li>→ "Let's go" / "Let's build"</li>
-          <li>→ First person: "we" not "the church"</li>
-          <li>→ Short, punchy, direct</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="dd-label">We don't say</div>
-        <ul class="dd-list">
-          <li>→ "We cordially invite you to..."</li>
-          <li>→ "Greetings beloved brethren"</li>
-          <li>→ Guilt-based messaging</li>
-          <li>→ "You need to be in church"</li>
-          <li>→ Walls of text with no personality</li>
-          <li>→ Corporate / formal language</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="hashtag-row">
-      <div class="hashtag-group">
-        <div class="hg-title">Brand</div>
-        <span class="tag">#CETorontoMississauga</span>
-        <span class="tag">#CEtoronto</span>
-        <span class="tag">#CEToronto</span>
-        <span class="tag">#CEtorontocan</span>
-        <span class="tag">#ChristEmbassy</span>
-        <span class="tag">#ChristEmbassyToronto</span>
-        <span class="tag">#CEMississauga</span>
-      </div>
-      <div class="hashtag-group">
-        <div class="hg-title">Content</div>
-        <span class="tag">#TheHub</span>
-        <span class="tag">#SundayService</span>
-        <span class="tag">#HealingStreams</span>
-        <span class="tag">#FaithWalk</span>
-      </div>
-      <div class="hashtag-group">
-        <div class="hg-title">Community</div>
-        <span class="tag">#TorontoChurch</span>
-        <span class="tag">#MississaugaChurch</span>
-        <span class="tag">#GTAchurch</span>
-      </div>
-    </div>
+<section class="section" id="templates"><div class="container">
+  <div class="reveal"><div class="s-num">04 — Templates</div><div class="s-title">HOW POSTS LOOK</div><div class="s-desc">The visual language across different post types.</div></div>
+    <div class="templates-grid stagger">
+    <div class="tpl-wrap si"><div class="tpl-label">Sunday Service</div><div class="tpl" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--navy) 60%,var(--deep) 100%)"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,rgba(34,211,238,.1) 0%,transparent 60%)"></div><div style="position:relative;z-index:2"><div style="font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:20px">Every Sunday · 10 AM</div><div style="font-weight:900;font-size:34px;line-height:.95;color:var(--white);text-transform:uppercase;margin-bottom:10px">THIS<br>SUNDAY</div><div style="font-family:var(--font-serif);font-size:18px;font-style:italic;font-weight:300;color:rgba(103,232,249,.6);margin-bottom:20px">"Walking by faith,<br>not by sight"</div><div style="font-size:11px;font-weight:500;color:rgba(255,255,255,.3)">@cetorontocan</div></div></div></div>
+    <div class="tpl-wrap si"><div class="tpl-label">Quote / Devotional</div><div class="tpl" style="background:var(--ice)"><div style="position:relative;z-index:2;padding:12px"><div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:28px">Daily Devotional</div><div style="font-family:var(--font-serif);font-size:22px;font-weight:300;font-style:italic;color:var(--navy);line-height:1.4;margin-bottom:16px">"For I know the plans I have for you, declares the Lord"</div><div style="width:36px;height:2px;background:var(--cyan);margin:0 auto 12px"></div><div style="font-size:12px;font-weight:600;color:var(--ocean)">Jeremiah 29:11</div><div style="font-size:10px;font-weight:500;color:var(--teal);margin-top:24px;letter-spacing:2px">@CETORONTOCAN</div></div></div></div>
+    <div class="tpl-wrap si"><div class="tpl-label">Event — The Hub</div><div class="tpl" style="background:linear-gradient(160deg,var(--midnight) 0%,var(--deep) 100%)"><div style="position:absolute;inset:0;background:radial-gradient(circle at 55% 50%,rgba(8,145,178,.2) 0%,transparent 50%)"></div><div style="position:relative;z-index:2"><div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--sky);margin-bottom:6px">The Hub Presents</div><div style="font-weight:900;font-size:36px;line-height:.92;color:var(--white);text-transform:uppercase;margin-bottom:6px">FOOTBALL<br>TOURNAMENT</div><div style="font-family:var(--font-serif);font-size:14px;font-style:italic;font-weight:300;color:rgba(103,232,249,.5);margin-bottom:20px">Lace up. Show up. Bring your team.</div><div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px"><div style="background:rgba(103,232,249,.1);padding:6px 14px;border-radius:4px"><div style="font-size:10px;font-weight:700;color:var(--sky);letter-spacing:1px">SAT APR 12</div></div><div style="background:rgba(103,232,249,.1);padding:6px 14px;border-radius:4px"><div style="font-size:10px;font-weight:700;color:var(--sky);letter-spacing:1px">2 PM</div></div></div><div style="font-size:10px;font-weight:500;color:rgba(255,255,255,.3)">Register → Link in Bio</div></div></div></div>
+    <div class="tpl-wrap si"><div class="tpl-label">Healing Streams</div><div class="tpl" style="background:linear-gradient(175deg,var(--midnight) 0%,#0A2035 50%,var(--navy) 100%)"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(34,211,238,.08) 0%,transparent 50%)"></div><div style="position:relative;z-index:2"><div style="font-size:9px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px">Live Healing Services</div><div style="font-weight:900;font-size:32px;line-height:1;color:var(--white);text-transform:uppercase;margin-bottom:4px">HEALING</div><div style="font-family:var(--font-serif);font-size:38px;font-style:italic;font-weight:300;color:var(--sky);line-height:1">Streams</div><div style="font-family:var(--font-serif);font-size:14px;font-weight:300;font-style:italic;color:rgba(255,255,255,.35);margin:18px 0 20px">"By His stripes, we are healed"</div><div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--cyan)">HEALINGSTREAMS.TV</div></div></div></div>
   </div>
-</section>
+</div></section>
  
-<!-- ═══════ 06 — PHOTO DIRECTION ═══════ -->
-<section class="section" id="photo">
-  <div class="container">
-    <div class="s-num">06 — Photo &amp; Video</div>
-    <div class="s-title">WHAT TO SHOOT</div>
-    <div class="s-desc">Six shot types for the media team. Prioritize real moments over posed photos.</div>
  
-    <div class="photo-grid">
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
-          <div class="photo-name" style="color:var(--sky);">The Walk-In</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">People arriving. Handshakes at the door, families walking in. Says "you're welcome here."</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Shoot from inside looking toward entrance</div>
-        </div>
-      </div>
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--ocean) 150%);">
-          <div class="photo-name" style="color:var(--white);">Worship Moments</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Hands raised, band in full flow. Wide for atmosphere, tight for emotion.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Slow-mo clips are gold for Reels</div>
-        </div>
-      </div>
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--ice) 0%, var(--frost) 100%);">
-          <div class="photo-name" style="color:var(--navy);">The In-Between</div>
-          <div class="photo-desc" style="color:var(--deep);">Coffee, kids running, post-service conversations. Candid moments that humanize the brand.</div>
-          <div class="photo-tip" style="color:var(--teal);">→ Don't pose people — catch real moments</div>
-        </div>
-      </div>
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, #0A3552 100%);">
-          <div class="photo-name" style="color:var(--cyan);">The Setup</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Media team running cables. Sound check. The "before" to Sunday's "during."</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Time-lapse from empty room to full service</div>
-        </div>
-      </div>
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--deep) 0%, var(--teal) 150%);">
-          <div class="photo-name" style="color:var(--white);">The Huddle</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.75);">Small groups praying. Youth gathering. Teams planning. Community at its most real.</div>
-          <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ Over-the-shoulder angles feel immersive</div>
-        </div>
-      </div>
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--navy) 100%);">
-          <div class="photo-name" style="color:var(--sky);">The Stage</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Wide shot during service. Pastor mid-message. The cinematic, premium shot.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Tripod + long lens for clean compression</div>
-        </div>
-      </div>
-    </div>
+<section class="section" id="voice"><div class="container">
+  <div class="reveal"><div class="s-num">05 — Voice &amp; Tone</div><div class="s-title">HOW WE SPEAK</div><div class="s-desc">Casual, warm, real. Like texting a friend who has something powerful to say.</div></div>
+    <div class="voice-grid stagger">
+    <div class="voice-card glass si"><div class="voice-type">Sunday Caption</div><div class="voice-example">"That moment when worship hits different and you forget you had a rough week. See you Sunday. 10 AM. Don't be late."</div><div class="voice-note">Casual, warm. Not a corporate announcement — a friend texting you.</div></div>
+    <div class="voice-card glass si"><div class="voice-type">Event Promo</div><div class="voice-example">"The Hub Football Tournament is BACK. Grab your squad, lace up, and come ready to compete. Bragging rights are on the line."</div><div class="voice-note">Energetic, direct. Short sentences. Action-oriented.</div></div>
+    <div class="voice-card glass si"><div class="voice-type">Devotional</div><div class="voice-example">"Some days faith feels easy. Some days it feels like you're carrying the weight of everything. Either way — He's carrying you."</div><div class="voice-note">Honest, gentle, conversational. Meets people where they are.</div></div>
+    <div class="voice-card glass si"><div class="voice-type">Behind the Scenes</div><div class="voice-example">"POV: the media team at 7 AM making sure everything sounds right so you can have the best Sunday. These are the real MVPs."</div><div class="voice-note">Fun, appreciative, a little playful.</div></div>
   </div>
-</section>
- 
-<!-- ═══════ 07 — CONTENT IDEAS ═══════ -->
-<section class="section" id="ideas">
-  <div class="container">
-    <div class="s-num">07 — Content Ideas</div>
-    <div class="s-title">WHAT TO CREATE</div>
-    <div class="s-desc">A bank of ready-to-use content ideas. Pick what fits the week, mix and match, and make them your own.</div>
- 
-    <div class="photo-grid" style="margin-top:40px;">
- 
-      <!-- Rhapsody Daily Quote -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
-          <div class="photo-name" style="color:var(--sky);">Daily Rhapsody Quote</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Post a quote from Rhapsody of Realities to Stories every day. Clean typography on a branded background. Consistent, simple, and it keeps the page active daily.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Stories (daily)</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use the quote template with Crimson Pro italic</div>
-        </div>
-      </div>
- 
-      <!-- Church Outfit of the Day -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--ice) 0%, var(--frost) 100%);">
-          <div class="photo-name" style="color:var(--navy);">Church Outfit of the Day</div>
-          <div class="photo-desc" style="color:var(--deep);">Feature someone's Sunday fit — photo in the lobby or outside the building. Fun, lighthearted, and it shows real people. Ask permission first.</div>
-          <div class="photo-tip" style="color:var(--teal);">→ Best for: Stories, Reels, Feed carousel</div>
-          <div class="photo-tip" style="color:var(--teal);">→ Use a "CE OOTD" text overlay in Canva</div>
-        </div>
-      </div>
- 
-      <!-- Department Interviews -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--ocean) 150%);">
-          <div class="photo-name" style="color:var(--white);">Department Spotlight</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Sit down with someone from sound, media, ushers, kids church — ask what they do, why they serve, what they love about it. 60–90 sec video.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Reels, TikTok, YouTube Shorts</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use "Meet the Team" as a recurring series name</div>
-        </div>
-      </div>
- 
-      <!-- First Time at CE -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--deep) 0%, var(--teal) 150%);">
-          <div class="photo-name" style="color:var(--white);">First Time at CE</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.75);">Catch first-time visitors after service — ask how they heard about CE, what they thought, how they felt. Authentic reactions are the best marketing.</div>
-          <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ Best for: Reels, TikTok</div>
-          <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ "POV: your first Sunday at CE Toronto" format</div>
-        </div>
-      </div>
- 
-      <!-- Song of the Week -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, #0A3552 100%);">
-          <div class="photo-name" style="color:var(--cyan);">Song of the Week</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Worship team picks a song — post a 30-sec clip of them playing it, or a graphic with the song name and a Spotify/YouTube link. Builds the worship culture online.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Stories, Feed post, Reels</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Tag the original artist for extra reach</div>
-        </div>
-      </div>
- 
-      <!-- Throwback Moments -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--navy) 100%);">
-          <div class="photo-name" style="color:var(--sky);">Throwback Moments</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Dig into the archives — old event photos, past Night of Bliss, early days of CE Toronto. Nostalgia connects people and shows how far the church has come.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Feed carousel, Stories</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use "#ThrowbackThursday" or "#CETBT"</div>
-        </div>
-      </div>
- 
-      <!-- Children's Church -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--ice) 0%, var(--frost) 100%);">
-          <div class="photo-name" style="color:var(--navy);">Children's Church Highlights</div>
-          <div class="photo-desc" style="color:var(--deep);">Fun moments from kids church — crafts, games, worship, the kids being kids. Parents love seeing this, and it shows families there's something for everyone.</div>
-          <div class="photo-tip" style="color:var(--teal);">→ Best for: Stories, Feed post</div>
-          <div class="photo-tip" style="color:var(--teal);">→ Always get parent permission before posting kids</div>
-        </div>
-      </div>
- 
-      <!-- Why I Serve -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
-          <div class="photo-name" style="color:var(--sky);">Why I Serve</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Quick video — a volunteer shares why they serve and what it means to them. Inspires others to get involved. Keep it under 60 seconds, real and unscripted.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Reels, TikTok, Feed</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Recurring series — one volunteer per week</div>
-        </div>
-      </div>
- 
-      <!-- Guess the Scripture -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--deep) 0%, var(--teal) 150%);">
-          <div class="photo-name" style="color:var(--white);">Guess the Scripture</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.75);">Post a scripture with a missing word or reference — let people guess in the comments or via Stories poll. Drives engagement and gets people in the Word.</div>
-          <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ Best for: Stories (quiz sticker), Feed</div>
-          <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ Reveal the answer in the next Story slide</div>
-        </div>
-      </div>
- 
-      <!-- Birthday / Member Shoutout -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--ocean) 150%);">
-          <div class="photo-name" style="color:var(--white);">Member Shoutout</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Birthday celebrations, milestones, achievements — shout out members on Stories. Makes people feel seen and valued. They'll repost it every time.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Stories</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Create a reusable birthday template in Canva</div>
-        </div>
-      </div>
- 
-      <!-- Tag Someone -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, #0A3552 100%);">
-          <div class="photo-name" style="color:var(--cyan);">Tag Someone</div>
-          <div class="photo-desc" style="color:rgba(255,255,255,0.7);">Post a relatable quote or encouragement and add "Tag someone who needs to hear this." Simple, effective, and it spreads your content to new people organically.</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Best for: Feed post, Stories</div>
-          <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Pair with devotional or sermon quote</div>
-        </div>
-      </div>
- 
-      <!-- Blank / Team's Own Idea -->
-      <div class="photo-card">
-        <div class="photo-inner" style="background: var(--ice); border:2px dashed rgba(8,145,178,0.2);">
-          <div class="photo-name" style="color:var(--teal);">Your Idea Here</div>
-          <div class="photo-desc" style="color:var(--ocean);">This list is a starting point. The best content ideas will come from the team — something funny that happened at service, a trending sound that fits, a moment someone captured on their phone. Stay creative.</div>
-          <div class="photo-tip" style="color:var(--teal);">→ If it feels like CE Toronto, post it</div>
-        </div>
-      </div>
- 
-    </div>
+  <div class="do-dont reveal">
+    <div class="do-col"><div class="dd-label">We say</div><ul class="dd-list"><li>→ "Come as you are"</li><li>→ "You belong here"</li><li>→ "See you Sunday"</li><li>→ "Let's go" / "Let's build"</li><li>→ First person: "we" not "the church"</li><li>→ Short, punchy, direct</li></ul></div>
+    <div class="dont-col"><div class="dd-label">We don't say</div><ul class="dd-list"><li>→ "We cordially invite you to..."</li><li>→ "Greetings beloved brethren"</li><li>→ Guilt-based messaging</li><li>→ "You need to be in church"</li><li>→ Walls of text with no personality</li><li>→ Corporate / formal language</li></ul></div>
   </div>
-</section>
+  <div class="hashtag-row stagger" style="margin-top:32px">
+    <div class="hashtag-group glass si"><div class="hg-title">Brand</div><span class="tag">#CETorontoMississauga</span><span class="tag">#CEtoronto</span><span class="tag">#CEToronto</span><span class="tag">#CEtorontocan</span><span class="tag">#ChristEmbassy</span><span class="tag">#ChristEmbassyToronto</span><span class="tag">#CEMississauga</span></div>
+    <div class="hashtag-group glass si"><div class="hg-title">Content</div><span class="tag">#TheHub</span><span class="tag">#SundayService</span><span class="tag">#HealingStreams</span><span class="tag">#FaithWalk</span></div>
+    <div class="hashtag-group glass si"><div class="hg-title">Community</div><span class="tag">#TorontoChurch</span><span class="tag">#MississaugaChurch</span><span class="tag">#GTAchurch</span></div>
+  </div>
+</div></section>
  
-<!-- FOOTER -->
-<div class="kit-footer">
-  <div class="container">
-    <div class="f-brand">CHRIST EMBASSY</div>
-    <div class="f-tag">"Giving your life a meaning"</div>
-    <div class="f-handles">
-      <div class="f-handle">Instagram · @cetorontocan</div>
-      <div class="f-handle">TikTok · @cetorontocan</div>
-      <div class="f-handle">Mississauga · Toronto</div>
-    </div>
+ 
+<section class="section" id="photo"><div class="container">
+  <div class="reveal"><div class="s-num">06 — Photo &amp; Video</div><div class="s-title">WHAT TO SHOOT</div><div class="s-desc">Six shot types for the media team. Prioritize real moments over posed photos.</div></div>
+    <div class="photo-grid stagger">
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,var(--deep) 100%)"><div class="photo-name" style="color:var(--sky)">The Walk-In</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">People arriving. Handshakes at the door, families walking in. Says "you're welcome here."</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Shoot from inside looking toward entrance</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--ocean) 150%)"><div class="photo-name" style="color:var(--white)">Worship Moments</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Hands raised, band in full flow. Wide for atmosphere, tight for emotion.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Slow-mo clips are gold for Reels</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--ice) 0%,var(--frost) 100%)"><div class="photo-name" style="color:var(--navy)">The In-Between</div><div class="photo-desc" style="color:var(--deep)">Coffee, kids running, post-service conversations. Candid moments that humanize the brand.</div><div class="photo-tip" style="color:var(--teal)">→ Don't pose people — catch real moments</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,#0A3552 100%)"><div class="photo-name" style="color:var(--cyan)">The Setup</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Media team running cables. Sound check. The "before" to Sunday's "during."</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Time-lapse from empty room to full service</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--deep) 0%,var(--teal) 150%)"><div class="photo-name" style="color:var(--white)">The Huddle</div><div class="photo-desc" style="color:rgba(255,255,255,.75)">Small groups praying. Youth gathering. Teams planning. Community at its most real.</div><div class="photo-tip" style="color:rgba(255,255,255,.35)">→ Over-the-shoulder angles feel immersive</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--navy) 100%)"><div class="photo-name" style="color:var(--sky)">The Stage</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Wide shot during service. Pastor mid-message. The cinematic, premium shot.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Tripod + long lens for clean compression</div></div></div>
+  </div>
+</div></section>
+ 
+ 
+<section class="section" id="ideas"><div class="container">
+  <div class="reveal"><div class="s-num">07 — Content Ideas</div><div class="s-title">WHAT TO CREATE</div><div class="s-desc">A bank of ready-to-use content ideas. Pick what fits the week, mix and match, and make them your own.</div></div>
+    <div class="photo-grid stagger" style="margin-top:40px">
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,var(--deep) 100%)"><div class="photo-name" style="color:var(--sky)">Daily Rhapsody Quote</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Post a quote from Rhapsody of Realities to Stories every day. Clean typography on a branded background. Consistent, simple, and it keeps the page active daily.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Stories (daily)</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Use the quote template with Crimson Pro italic</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--ice) 0%,var(--frost) 100%)"><div class="photo-name" style="color:var(--navy)">Church Outfit of the Day</div><div class="photo-desc" style="color:var(--deep)">Feature someone's Sunday fit — photo in the lobby or outside the building. Fun, lighthearted, and it shows real people. Ask permission first.</div><div class="photo-tip" style="color:var(--teal)">→ Best for: Stories, Reels, Feed carousel</div><div class="photo-tip" style="color:var(--teal)">→ Use a "CE OOTD" text overlay in Canva</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--ocean) 150%)"><div class="photo-name" style="color:var(--white)">Department Spotlight</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Sit down with someone from sound, media, ushers, kids church — ask what they do, why they serve, what they love about it. 60–90 sec video.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Reels, TikTok, YouTube Shorts</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Use "Meet the Team" as a recurring series name</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--deep) 0%,var(--teal) 150%)"><div class="photo-name" style="color:var(--white)">First Time at CE</div><div class="photo-desc" style="color:rgba(255,255,255,.75)">Catch first-time visitors after service — ask how they heard about CE, what they thought, how they felt. Authentic reactions are the best marketing.</div><div class="photo-tip" style="color:rgba(255,255,255,.35)">→ Best for: Reels, TikTok</div><div class="photo-tip" style="color:rgba(255,255,255,.35)">→ "POV: your first Sunday at CE Toronto" format</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,#0A3552 100%)"><div class="photo-name" style="color:var(--cyan)">Song of the Week</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Worship team picks a song — post a 30-sec clip of them playing it, or a graphic with the song name and a Spotify/YouTube link. Builds the worship culture online.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Stories, Feed post, Reels</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Tag the original artist for extra reach</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--navy) 100%)"><div class="photo-name" style="color:var(--sky)">Throwback Moments</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Dig into the archives — old event photos, past Night of Bliss, early days of CE Toronto. Nostalgia connects people and shows how far the church has come.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Feed carousel, Stories</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Use "#ThrowbackThursday" or "#CETBT"</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--ice) 0%,var(--frost) 100%)"><div class="photo-name" style="color:var(--navy)">Children's Church Highlights</div><div class="photo-desc" style="color:var(--deep)">Fun moments from kids church — crafts, games, worship, the kids being kids. Parents love seeing this, and it shows families there's something for everyone.</div><div class="photo-tip" style="color:var(--teal)">→ Best for: Stories, Feed post</div><div class="photo-tip" style="color:var(--teal)">→ Always get parent permission before posting kids</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,var(--deep) 100%)"><div class="photo-name" style="color:var(--sky)">Why I Serve</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Quick video — a volunteer shares why they serve and what it means to them. Inspires others to get involved. Keep it under 60 seconds, real and unscripted.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Reels, TikTok, Feed</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Recurring series — one volunteer per week</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--deep) 0%,var(--teal) 150%)"><div class="photo-name" style="color:var(--white)">Guess the Scripture</div><div class="photo-desc" style="color:rgba(255,255,255,.75)">Post a scripture with a missing word or reference — let people guess in the comments or via Stories poll. Drives engagement and gets people in the Word.</div><div class="photo-tip" style="color:rgba(255,255,255,.35)">→ Best for: Stories (quiz sticker), Feed</div><div class="photo-tip" style="color:rgba(255,255,255,.35)">→ Reveal the answer in the next Story slide</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--midnight) 0%,var(--ocean) 150%)"><div class="photo-name" style="color:var(--white)">Member Shoutout</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Birthday celebrations, milestones, achievements — shout out members on Stories. Makes people feel seen and valued. They'll repost it every time.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Stories</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Create a reusable birthday template in Canva</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:linear-gradient(170deg,var(--navy) 0%,#0A3552 100%)"><div class="photo-name" style="color:var(--cyan)">Tag Someone</div><div class="photo-desc" style="color:rgba(255,255,255,.7)">Post a relatable quote or encouragement and add "Tag someone who needs to hear this." Simple, effective, and it spreads your content to new people organically.</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Best for: Feed post, Stories</div><div class="photo-tip" style="color:rgba(103,232,249,.4)">→ Pair with devotional or sermon quote</div></div></div>
+    <div class="photo-card si"><div class="photo-inner" style="background:var(--ice);border:2px dashed rgba(8,145,178,.2)"><div class="photo-name" style="color:var(--teal)">Your Idea Here</div><div class="photo-desc" style="color:var(--ocean)">This list is a starting point. The best content ideas will come from the team — something funny that happened at service, a trending sound that fits, a moment someone captured on their phone. Stay creative.</div><div class="photo-tip" style="color:var(--teal)">→ If it feels like CE Toronto, post it</div></div></div>
+  </div>
+</div></section>
+ 
+ 
+<div class="kit-footer"><div class="container">
+  <div class="f-brand">CHRIST EMBASSY</div>
+  <div class="f-tag">"Giving your life a meaning"</div>
+  <div class="f-handles"><div class="f-handle">Instagram · @cetorontocan</div><div class="f-handle">TikTok · @cetorontocan</div><div class="f-handle">Mississauga · Toronto</div></div>
     <div class="f-note">Brand Kit · CE Toronto-Mississauga · 2026</div>
-    <div style="margin-top:16px;">
-      <a href="https://dotxlabs.com" target="_blank" style="font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:rgba(103,232,249,0.35); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(103,232,249,0.6)'" onmouseout="this.style.color='rgba(103,232,249,0.35)'">Prepared by DOTxLabs</a>
-    </div>
-  </div>
-</div>
- 
+  <div style="margin-top:16px"><a href="https://dotxlabs.com" target="_blank" style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(103,232,249,.35);text-decoration:none;transition:color .3s,transform .3s;display:inline-block" onmouseover="this.style.color='rgba(103,232,249,.7)';this.style.transform='translateY(-1px)'" onmouseout="this.style.color='rgba(103,232,249,.35)';this.style.transform='translateY(0)'">Prepared by DOTxLabs</a></div>
+</div></div>
 <script>
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
-  });
-});
- 
-function copyHex(el) {
-  const hex = el.querySelector('.chip-hex').textContent;
-  navigator.clipboard.writeText(hex).then(() => {
-    const n = el.querySelector('.chip-name');
-    const orig = n.textContent;
-    n.textContent = 'Copied!';
-    setTimeout(() => n.textContent = orig, 1000);
-  });
-}
- 
-window.addEventListener('scroll', () => {
-  document.querySelector('.nav').style.boxShadow =
-    window.scrollY > 80 ? '0 2px 16px rgba(12,45,72,0.06)' : 'none';
-});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal,.reveal-s,.stagger').forEach(el=>ro.observe(el));
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>60)},{passive:true});
+document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){const y=t.getBoundingClientRect().top+scrollY-70;window.scrollTo({top:y,behavior:'smooth'})}})});
+const pc=document.getElementById('particles');for(let i=0;i<30;i++){const p=document.createElement('div');p.className='hero-particle';p.style.left=Math.random()*100+'%';p.style.width=p.style.height=(1+Math.random()*2.5)+'px';p.style.animationDuration=(6+Math.random()*10)+'s';p.style.animationDelay=(Math.random()*8)+'s';pc.appendChild(p)}
+function copyHex(el){const h=el.querySelector('.chip-hex').textContent;navigator.clipboard.writeText(h).then(()=>{el.classList.add('copied');setTimeout(()=>el.classList.remove('copied'),1200)})}
+const hb=document.querySelector('.hero-bg');window.addEventListener('scroll',()=>{if(scrollY<innerHeight)hb.style.transform='scale('+(1+scrollY*.0003)+') translateY('+scrollY*.3+'px)'},{passive:true});
 </script>
- 
 </body>
 </html>
+ 
