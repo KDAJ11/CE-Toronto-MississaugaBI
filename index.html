@@ -20,12 +20,12 @@
   --navy: #0C2D48;
   --midnight: #071A2E;
   --white: #FFFFFF;
-
+ 
   /* ── FONTS ── */
   --font-display: 'Montserrat', sans-serif;
   --font-serif: 'Crimson Pro', serif;
 }
-
+ 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -36,12 +36,12 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-
+ 
 /* ── LAYOUT ── */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 .section { padding: 80px 0; }
 .section + .section { border-top: 1px solid #E2EFF2; }
-
+ 
 /* ── NAV ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -67,7 +67,7 @@ body {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--navy); }
-
+ 
 /* ── HERO ── */
 .hero {
   min-height: 70vh;
@@ -119,12 +119,12 @@ body {
   color: rgba(103,232,249,0.5);
   opacity: 0; animation: fadeUp 0.6s 0.6s forwards;
 }
-
+ 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
+ 
 /* ── SECTION HEADERS ── */
 .s-num {
   font-size: 11px; font-weight: 700;
@@ -149,7 +149,7 @@ body {
   color: var(--ocean);
   max-width: 550px;
 }
-
+ 
 /* ── COLOR PALETTE ── */
 .palette-row {
   display: flex; gap: 0;
@@ -170,7 +170,7 @@ body {
 .chip-hex { font-size: 10px; font-weight: 400; opacity: 0.7; }
 .chip.lt .chip-name, .chip.lt .chip-hex { color: var(--navy); }
 .chip.dk .chip-name, .chip.dk .chip-hex { color: var(--ice); }
-
+ 
 .usage-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -198,7 +198,7 @@ body {
   color: var(--deep);
   line-height: 1.5;
 }
-
+ 
 /* ── TYPOGRAPHY ── */
 .type-card {
   background: var(--ice);
@@ -239,7 +239,7 @@ body {
   color: var(--deep);
   max-width: 560px;
 }
-
+ 
 .font-roles {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -268,7 +268,7 @@ body {
   color: var(--ocean);
   line-height: 1.6;
 }
-
+ 
 /* SCALE TABLE */
 .scale-table {
   width: 100%; border-collapse: collapse; margin-top: 28px;
@@ -291,7 +291,7 @@ body {
   letter-spacing: 1px; text-transform: uppercase;
   color: var(--ocean);
 }
-
+ 
 /* ── CONTENT PILLARS ── */
 .pillars-grid {
   display: grid;
@@ -339,7 +339,7 @@ body {
   color: var(--cyan);
   font-weight: 700;
 }
-
+ 
 /* ── TEMPLATES ── */
 .templates-grid {
   display: grid;
@@ -365,7 +365,7 @@ body {
   position: relative;
   box-shadow: 0 4px 20px rgba(12,45,72,0.12);
 }
-
+ 
 /* ── VOICE ── */
 .voice-grid {
   display: grid;
@@ -397,7 +397,7 @@ body {
   color: var(--ocean);
   line-height: 1.5;
 }
-
+ 
 .do-dont {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -422,7 +422,7 @@ body {
   font-size: 13px; color: var(--navy);
   padding: 3px 0; line-height: 1.45;
 }
-
+ 
 /* ── HASHTAGS ── */
 .hashtag-row {
   display: grid;
@@ -450,47 +450,7 @@ body {
   border-radius: 4px;
   margin: 3px 2px;
 }
-
-/* ── CALENDAR ── */
-.cal-table {
-  width: 100%; border-collapse: collapse;
-  margin-top: 40px;
-  font-size: 12px;
-}
-.cal-table th {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ocean);
-  text-align: left;
-  padding: 10px 10px;
-  border-bottom: 2px solid #E2EFF2;
-  background: var(--ice);
-}
-.cal-table td {
-  padding: 10px;
-  border-bottom: 1px solid #F0F6F8;
-  vertical-align: top;
-}
-.cal-table tr:hover td { background: rgba(240,250,251,0.5); }
-.cal-day {
-  font-weight: 700;
-  color: var(--navy);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 11px;
-  white-space: nowrap;
-}
-.ct {
-  display: inline-block;
-  font-size: 10px; font-weight: 600;
-  padding: 2px 8px; border-radius: 3px;
-  margin: 1px 0; line-height: 1.6;
-}
-.ct.teal { background: rgba(8,145,178,0.1); color: var(--deep); }
-.ct.cyan { background: rgba(34,211,238,0.12); color: var(--ocean); }
-.ct.light { background: #F0F6F8; color: var(--ocean); }
-.ct.navy { background: rgba(12,45,72,0.08); color: var(--navy); }
-
+ 
 /* ── PHOTO DIRECTION ── */
 .photo-grid {
   display: grid;
@@ -523,7 +483,7 @@ body {
   opacity: 0.55;
   margin-top: 4px;
 }
-
+ 
 /* ── FOOTER ── */
 .kit-footer {
   background: var(--navy);
@@ -556,23 +516,101 @@ body {
   color: rgba(103,232,249,0.15);
   letter-spacing: 1px;
 }
-
+ 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .font-roles { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: 1fr; }
-  .voice-grid { grid-template-columns: 1fr; }
-  .do-dont { grid-template-columns: 1fr; }
-  .usage-grid { grid-template-columns: 1fr; }
-  .hashtag-row { grid-template-columns: 1fr; }
+  /* Layout */
+  .container { padding: 0 20px; }
+  .section { padding: 56px 0; }
+ 
+  /* Nav */
   .nav-links { display: none; }
+  .nav-inner { padding: 0 20px; }
+ 
+  /* Hero */
+  .hero { min-height: 60vh; padding: 80px 20px 60px; }
+  .hero-title { font-size: clamp(32px, 10vw, 56px); letter-spacing: -0.5px; }
+  .hero-title em { font-size: 0.55em; }
+  .hero-label { font-size: 10px; letter-spacing: 3px; margin-bottom: 20px; }
+  .hero-sub { font-size: 15px; }
+ 
+  /* Section headers */
+  .s-title { font-size: clamp(24px, 7vw, 36px); }
+  .s-desc { font-size: 16px; }
+ 
+  /* Color palette — stack chips into a 3x3 grid on mobile */
+  .palette-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 8px;
+  }
+  .chip {
+    min-height: 80px;
+    padding: 10px;
+  }
+  .chip:hover { flex: 1; }
+  .chip-name { font-size: 9px; }
+  .chip-hex { font-size: 9px; }
+ 
+  /* Usage cards */
+  .usage-grid { grid-template-columns: 1fr; }
+ 
+  /* Typography */
+  .type-card { padding: 24px; }
+  .type-headline { font-size: clamp(28px, 8vw, 40px); }
+  .type-quote { font-size: clamp(18px, 5vw, 24px); }
+  .font-roles { grid-template-columns: 1fr; }
+ 
+  /* Scale table — make scrollable */
+  .scale-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .scale-table td, .scale-table th { white-space: nowrap; padding: 10px 12px; }
+ 
+  /* Content pillars */
   .pillars-grid { grid-template-columns: 1fr; }
-  .templates-grid { grid-template-columns: 1fr; }
+ 
+  /* Templates — single column, constrain size */
+  .templates-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .tpl { font-size: 14px; }
+ 
+  /* Voice */
+  .voice-grid { grid-template-columns: 1fr; }
+  .voice-card { padding: 22px; }
+  .voice-example { font-size: 15px; }
+  .do-dont { grid-template-columns: 1fr; }
+ 
+  /* Hashtags */
+  .hashtag-row { grid-template-columns: 1fr; }
+ 
+  /* Photo grid */
+  .photo-grid { grid-template-columns: 1fr; }
+  .photo-inner { aspect-ratio: auto; min-height: 200px; }
+ 
+  /* Footer */
+  .f-handles { flex-direction: column; gap: 8px; align-items: center; }
+  .f-brand { font-size: 15px; letter-spacing: 3px; }
+  .f-tag { font-size: 14px; }
+  .kit-footer { padding: 48px 0; }
+}
+ 
+/* Small phones */
+@media (max-width: 400px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 28px; }
+  .hero-title em { font-size: 0.5em; display: block; margin-top: 8px; }
+  .s-title { font-size: 22px; }
+  .palette-row { grid-template-columns: repeat(3, 1fr); }
+  .chip { min-height: 70px; padding: 8px; }
+  .chip-name { font-size: 8px; letter-spacing: 0; }
+  .chip-hex { font-size: 8px; }
+  .type-headline { font-size: 26px; }
+  .pillar-name { font-size: 14px; }
+  .tpl { padding: 20px; }
+  .templates-grid { max-width: 100%; }
 }
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
@@ -588,7 +626,7 @@ body {
     </ul>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
@@ -597,14 +635,14 @@ body {
     <p class="hero-sub">Everything the team needs to post on brand, every time.</p>
   </div>
 </section>
-
+ 
 <!-- ═══════ 01 — COLORS ═══════ -->
 <section class="section" id="colors">
   <div class="container">
     <div class="s-num">01 — Colors</div>
     <div class="s-title">THE PALETTE</div>
     <div class="s-desc">Click any swatch to copy its hex code.</div>
-
+ 
     <div class="palette-row">
       <div class="chip lt" style="background:var(--ice)" onclick="copyHex(this)"><div class="chip-name">Ice</div><div class="chip-hex">#F0FAFB</div></div>
       <div class="chip lt" style="background:var(--frost)" onclick="copyHex(this)"><div class="chip-name">Frost</div><div class="chip-hex">#D5F0F5</div></div>
@@ -616,7 +654,7 @@ body {
       <div class="chip dk" style="background:var(--navy)" onclick="copyHex(this)"><div class="chip-name">Navy</div><div class="chip-hex">#0C2D48</div></div>
       <div class="chip dk" style="background:var(--midnight)" onclick="copyHex(this)"><div class="chip-name">Midnight</div><div class="chip-hex">#071A2E</div></div>
     </div>
-
+ 
     <div class="usage-grid">
       <div class="usage-card">
         <div class="usage-dot" style="background: linear-gradient(135deg, var(--navy), var(--midnight));"></div>
@@ -636,21 +674,21 @@ body {
     </div>
   </div>
 </section>
-
+ 
 <!-- ═══════ 02 — TYPOGRAPHY ═══════ -->
 <section class="section" id="type">
   <div class="container">
     <div class="s-num">02 — Typography</div>
     <div class="s-title">TWO FONTS. TWO JOBS.</div>
     <div class="s-desc">Montserrat for impact. Crimson Pro for elegance.</div>
-
+ 
     <div class="type-card">
       <div class="type-tag">Specimen</div>
       <div class="type-headline">THIS SUNDAY IS<br>DIFFERENT</div>
       <div class="type-quote">"Come as you are. Leave changed."</div>
       <div class="type-body">Join us this Sunday at 10 AM as we continue our series on faith in the everyday. Doors open at 9:30 AM — come early, grab coffee, and find your people.</div>
     </div>
-
+ 
     <div class="font-roles">
       <div class="font-role">
         <div class="font-role-label">Headlines + Labels</div>
@@ -674,7 +712,7 @@ body {
         </div>
       </div>
     </div>
-
+ 
     <table class="scale-table">
       <thead>
         <tr><th>Element</th><th>Font</th><th>Size</th><th>Preview</th></tr>
@@ -720,14 +758,14 @@ body {
     </table>
   </div>
 </section>
-
+ 
 <!-- ═══════ 03 — CONTENT PILLARS ═══════ -->
 <section class="section" id="pillars">
   <div class="container">
     <div class="s-num">03 — What to Post</div>
     <div class="s-title">CONTENT PILLARS</div>
     <div class="s-desc">Seven types of content. Post ideas for each.</div>
-
+ 
     <div class="pillars-grid">
       <div class="pillar">
         <div class="pillar-top">
@@ -816,16 +854,16 @@ body {
     </div>
   </div>
 </section>
-
+ 
 <!-- ═══════ 04 — TEMPLATES ═══════ -->
 <section class="section" id="templates">
   <div class="container">
     <div class="s-num">04 — Templates</div>
     <div class="s-title">HOW POSTS LOOK</div>
     <div class="s-desc">The visual language across different post types.</div>
-
+ 
     <div class="templates-grid">
-
+ 
       <!-- Sunday Service -->
       <div class="tpl-wrap">
         <div class="tpl-label">Sunday Service</div>
@@ -839,7 +877,7 @@ body {
           </div>
         </div>
       </div>
-
+ 
       <!-- Quote / Devotional -->
       <div class="tpl-wrap">
         <div class="tpl-label">Quote / Devotional</div>
@@ -853,7 +891,7 @@ body {
           </div>
         </div>
       </div>
-
+ 
       <!-- Event / The Hub -->
       <div class="tpl-wrap">
         <div class="tpl-label">Event — The Hub</div>
@@ -875,7 +913,7 @@ body {
           </div>
         </div>
       </div>
-
+ 
       <!-- Healing Streams -->
       <div class="tpl-wrap">
         <div class="tpl-label">Healing Streams</div>
@@ -890,18 +928,18 @@ body {
           </div>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <!-- ═══════ 05 — VOICE & TONE ═══════ -->
 <section class="section" id="voice">
   <div class="container">
     <div class="s-num">05 — Voice &amp; Tone</div>
     <div class="s-title">HOW WE SPEAK</div>
     <div class="s-desc">Casual, warm, real. Like texting a friend who has something powerful to say.</div>
-
+ 
     <div class="voice-grid">
       <div class="voice-card">
         <div class="voice-type">Sunday Caption</div>
@@ -924,7 +962,7 @@ body {
         <div class="voice-note">Fun, appreciative, a little playful.</div>
       </div>
     </div>
-
+ 
     <div class="do-dont">
       <div class="do-col">
         <div class="dd-label">We say</div>
@@ -949,7 +987,7 @@ body {
         </ul>
       </div>
     </div>
-
+ 
     <div class="hashtag-row">
       <div class="hashtag-group">
         <div class="hg-title">Brand</div>
@@ -977,14 +1015,14 @@ body {
     </div>
   </div>
 </section>
-
+ 
 <!-- ═══════ 06 — PHOTO DIRECTION ═══════ -->
 <section class="section" id="photo">
   <div class="container">
     <div class="s-num">06 — Photo &amp; Video</div>
     <div class="s-title">WHAT TO SHOOT</div>
     <div class="s-desc">Six shot types for the media team. Prioritize real moments over posed photos.</div>
-
+ 
     <div class="photo-grid">
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
@@ -1031,16 +1069,16 @@ body {
     </div>
   </div>
 </section>
-
+ 
 <!-- ═══════ 07 — CONTENT IDEAS ═══════ -->
 <section class="section" id="ideas">
   <div class="container">
     <div class="s-num">07 — Content Ideas</div>
     <div class="s-title">WHAT TO CREATE</div>
     <div class="s-desc">A bank of ready-to-use content ideas. Pick what fits the week, mix and match, and make them your own.</div>
-
+ 
     <div class="photo-grid" style="margin-top:40px;">
-
+ 
       <!-- Rhapsody Daily Quote -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
@@ -1050,7 +1088,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use the quote template with Crimson Pro italic</div>
         </div>
       </div>
-
+ 
       <!-- Church Outfit of the Day -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--ice) 0%, var(--frost) 100%);">
@@ -1060,7 +1098,7 @@ body {
           <div class="photo-tip" style="color:var(--teal);">→ Use a "CE OOTD" text overlay in Canva</div>
         </div>
       </div>
-
+ 
       <!-- Department Interviews -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--ocean) 150%);">
@@ -1070,7 +1108,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use "Meet the Team" as a recurring series name</div>
         </div>
       </div>
-
+ 
       <!-- First Time at CE -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--deep) 0%, var(--teal) 150%);">
@@ -1080,7 +1118,7 @@ body {
           <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ "POV: your first Sunday at CE Toronto" format</div>
         </div>
       </div>
-
+ 
       <!-- Song of the Week -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, #0A3552 100%);">
@@ -1090,7 +1128,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Tag the original artist for extra reach</div>
         </div>
       </div>
-
+ 
       <!-- Throwback Moments -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--navy) 100%);">
@@ -1100,7 +1138,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Use "#ThrowbackThursday" or "#CETBT"</div>
         </div>
       </div>
-
+ 
       <!-- Children's Church -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--ice) 0%, var(--frost) 100%);">
@@ -1110,7 +1148,7 @@ body {
           <div class="photo-tip" style="color:var(--teal);">→ Always get parent permission before posting kids</div>
         </div>
       </div>
-
+ 
       <!-- Why I Serve -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, var(--deep) 100%);">
@@ -1120,7 +1158,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Recurring series — one volunteer per week</div>
         </div>
       </div>
-
+ 
       <!-- Guess the Scripture -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--deep) 0%, var(--teal) 150%);">
@@ -1130,7 +1168,7 @@ body {
           <div class="photo-tip" style="color:rgba(255,255,255,0.35);">→ Reveal the answer in the next Story slide</div>
         </div>
       </div>
-
+ 
       <!-- Birthday / Member Shoutout -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--midnight) 0%, var(--ocean) 150%);">
@@ -1140,7 +1178,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Create a reusable birthday template in Canva</div>
         </div>
       </div>
-
+ 
       <!-- Tag Someone -->
       <div class="photo-card">
         <div class="photo-inner" style="background: linear-gradient(170deg, var(--navy) 0%, #0A3552 100%);">
@@ -1150,7 +1188,7 @@ body {
           <div class="photo-tip" style="color:rgba(103,232,249,0.4);">→ Pair with devotional or sermon quote</div>
         </div>
       </div>
-
+ 
       <!-- Blank / Team's Own Idea -->
       <div class="photo-card">
         <div class="photo-inner" style="background: var(--ice); border:2px dashed rgba(8,145,178,0.2);">
@@ -1159,11 +1197,11 @@ body {
           <div class="photo-tip" style="color:var(--teal);">→ If it feels like CE Toronto, post it</div>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <div class="kit-footer">
   <div class="container">
@@ -1180,7 +1218,7 @@ body {
     </div>
   </div>
 </div>
-
+ 
 <script>
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', e => {
@@ -1189,7 +1227,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
     if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
   });
 });
-
+ 
 function copyHex(el) {
   const hex = el.querySelector('.chip-hex').textContent;
   navigator.clipboard.writeText(hex).then(() => {
@@ -1199,12 +1237,12 @@ function copyHex(el) {
     setTimeout(() => n.textContent = orig, 1000);
   });
 }
-
+ 
 window.addEventListener('scroll', () => {
   document.querySelector('.nav').style.boxShadow =
     window.scrollY > 80 ? '0 2px 16px rgba(12,45,72,0.06)' : 'none';
 });
 </script>
-
+ 
 </body>
 </html>
