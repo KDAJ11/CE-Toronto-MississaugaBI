@@ -941,7 +941,8 @@ to {
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(8,145,178,.08) 0%,transparent 60%)
+  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(8,145,178,.08) 0%,transparent 60%);
+  pointer-events:none
 }
  
 .f-brand {
@@ -1272,7 +1273,7 @@ to {
   <div class="f-tag">"Giving your life a meaning"</div>
   <div class="f-handles"><div class="f-handle">Instagram · @cetorontocan</div><div class="f-handle">TikTok · @cetorontocan</div><div class="f-handle">Mississauga · Toronto</div></div>
     <div class="f-note">Brand Kit · CE Toronto-Mississauga · 2026</div>
-  <div style="margin-top:16px"><a href="https://dotxlabs.com" target="_blank" style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(103,232,249,.35);text-decoration:none;transition:color .3s,transform .3s;display:inline-block" onmouseover="this.style.color='rgba(103,232,249,.7)';this.style.transform='translateY(-1px)'" onmouseout="this.style.color='rgba(103,232,249,.35)';this.style.transform='translateY(0)'">Prepared by DOTxLabs</a></div>
+  <div style="margin-top:16px;position:relative;z-index:2"><a href="https://dotxlabs.com" target="_blank" rel="noopener noreferrer" style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(103,232,249,.35);text-decoration:none;transition:color .3s,transform .3s;display:inline-block" onmouseover="this.style.color='rgba(103,232,249,.7)';this.style.transform='translateY(-1px)'" onmouseout="this.style.color='rgba(103,232,249,.35)';this.style.transform='translateY(0)'">Prepared by DOTxLabs</a></div>
 </div></div>
 <script>
 const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
